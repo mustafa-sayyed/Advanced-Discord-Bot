@@ -12,7 +12,7 @@
 **🚀 Meet VAISH - The most advanced, feature-rich Discord bot that you own completely!**  
 **✨ No subscriptions • 🔓 Full ownership • 🛡️ Privacy-first • ⚡ Lightning-fast**
 
-[🖼️ Screenshots](#️-screenshots) • [🎯 Features](#-features) • [🔧 Installation](#-installation) • [🌐 Deploy to Render](#-deploy-to-render) • [📖 Commands](#-commands) • [🤝 Contributing](./CONTRIBUTING.md)
+[🖼️ Screenshots](#️-screenshots) • [🎯 Features](#-features) • [🔧 Installation](#-installation) • [🌐 Deploy to Render](#-deploy-to-render) • [📖 Commands](#-commands) • [![Contributing](https://img.shields.io/badge/Contributing-Guidelines-blue?style=for-the-badge)](./CONTRIBUTING.md)
 
 </div>
 
@@ -25,22 +25,27 @@
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/github/stars/VAISH-bot/discord-bot?style=social" alt="GitHub Stars">
+<img src="https://img.shields.io/github/stars/harshendram/Advanced-Discord-Bot?style=social" alt="GitHub Stars">
 <br><b>Stars</b>
 </td>
 
 <td align="center">
-<img src="https://img.shields.io/github/forks/VAISH-bot/discord-bot?style=social" alt="GitHub Forks">
+<img src="https://img.shields.io/github/forks/harshendram/Advanced-Discord-Bot?style=social" alt="GitHub Forks">
 <br><b>Forks</b>
 </td>
 
 <td align="center">
-<img src="https://img.shields.io/github/issues/VAISH-bot/discord-bot" alt="GitHub Issues">
+<img src="https://img.shields.io/github/issues/harshendram/Advanced-Discord-Bot" alt="GitHub Issues">
 <br><b>Open Issues</b>
 </td>
 
 <td align="center">
-<img src="https://img.shields.io/github/contributors/VAISH-bot/discord-bot" alt="GitHub Contributors">
+<img src="https://img.shields.io/github/issues-pr/harshendram/Advanced-Discord-Bot" alt="GitHub Pull Requests">
+<br><b>Pull Requests</b>
+</td>
+
+<td align="center">
+<img src="https://img.shields.io/github/contributors/harshendram/Advanced-Discord-Bot" alt="GitHub Contributors">
 <br><b>Contributors</b>
 </td>
 </tr>
