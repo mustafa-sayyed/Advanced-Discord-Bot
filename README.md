@@ -12,7 +12,12 @@
 **🚀 Meet VAISH - The most advanced, feature-rich Discord bot that you own completely!**  
 **✨ No subscriptions • 🔓 Full ownership • 🛡️ Privacy-first • ⚡ Lightning-fast**
 
-[🖼️ Screenshots](#️-screenshots) • [🎯 Features](#-features) • [🔧 Installation](#-installation) • [🌐 Deploy to Render](#-deploy-to-render) • [📖 Commands](#-commands) • [![Contributing](https://img.shields.io/badge/Contributing-Guidelines-blue?style=for-the-badge)](./CONTRIBUTING.md)
+[![Screenshots](https://img.shields.io/badge/-Screenshots-0078D4?style=for-the-badge&logo=google-photos&logoColor=white)](#️-screenshots)
+[![Features](https://img.shields.io/badge/-Features-4CAF50?style=for-the-badge&logo=sparkles&logoColor=white)](#-features)
+[![Installation](https://img.shields.io/badge/-Installation-FF9800?style=for-the-badge&logo=visualstudiocode&logoColor=white)](#-installation)
+[![Deploy to Render](https://img.shields.io/badge/-Deploy%20to%20Render-6A1B9A?style=for-the-badge&logo=render&logoColor=white)](#-deploy-to-render)
+[![Commands](https://img.shields.io/badge/-Commands-1976D2?style=for-the-badge&logo=terminal&logoColor=white)](#-commands)
+• [![Contributing](https://img.shields.io/badge/Contributing-Guidelines-blue?style=for-the-badge)](./CONTRIBUTING.md)
 
 </div>
 
