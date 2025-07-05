@@ -12,7 +12,7 @@ const Database = require("./utils/database");
 const TaskScheduler = require("./utils/scheduler");
 require("dotenv").config();
 
-// 🚀 Create Vaish - Ultra Modern Discord Bot
+// 🚀 Create VAISH - Ultra Modern Discord Bot
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -36,7 +36,7 @@ const client = new Client({
 client.commands = new Collection();
 client.cooldowns = new Collection();
 
-// 🎨 Vaish Brand Colors - Ultra Modern Design
+// 🎨 VAISH Brand Colors - Ultra Modern Design
 client.colors = {
   primary: "#6366F1", // Indigo-500 - Modern primary
   secondary: "#8B5CF6", // Violet-500 - Rich secondary
@@ -54,15 +54,15 @@ client.colors = {
   },
 };
 
-// 🤖 Vaish Bot Profile
+// 🤖 VAISH Bot Profile
 client.profile = {
-  name: "Vaish",
+  name: "VAISH",
   version: "2.0.0",
   description: "Ultra-modern AI-powered Discord bot with advanced features",
-  author: "Vaish Development Team",
-  website: "https://vaish-bot.com",
-  github: "https://github.com/vaish-bot/discord-bot",
-  support: "https://discord.gg/vaish-support",
+  author: "VAISH Development Team",
+  website: "https://VAISH-bot.com",
+  github: "https://github.com/VAISH-bot/discord-bot",
+  support: "https://discord.gg/VAISH-support",
   features: [
     "🤖 Advanced AI Assistant (Google Gemini)",
     "💎 Points & Rewards System",
@@ -86,7 +86,7 @@ client.profile = {
 let db;
 let scheduler;
 
-// 🔄 Dynamic Activity Status for Vaish
+// 🔄 Dynamic Activity Status for VAISH
 const activities = [
   { name: "🤖 AI Assistant | /aiassistant", type: ActivityType.Playing },
   { name: "💎 Points & Rewards | /points", type: ActivityType.Watching },
@@ -103,14 +103,14 @@ let currentActivity = 0;
 async function initializeDatabase() {
   try {
     db = await Database.getInstance();
-    console.log("🗃️ Vaish Database initialized successfully");
+    console.log("🗃️ VAISH Database initialized successfully");
 
     // Update bot stats
     client.profile.stats.uptime = Date.now();
 
     return db;
   } catch (error) {
-    console.error("❌ Vaish Database initialization failed:", error);
+    console.error("❌ VAISH Database initialization failed:", error);
     process.exit(1);
   }
 }
@@ -133,7 +133,7 @@ function loadCommands() {
 
           if ("data" in command && "execute" in command) {
             client.commands.set(command.data.name, command);
-            console.log(`✅ Vaish loaded: /${command.data.name}`);
+            console.log(`✅ VAISH loaded: /${command.data.name}`);
           } else {
             console.log(`⚠️ Invalid command structure: ${itemPath}`);
           }
@@ -145,7 +145,7 @@ function loadCommands() {
   }
 
   loadCommandsFromDir(commandsPath);
-  console.log(`🎯 Vaish loaded ${client.commands.size} commands successfully`);
+  console.log(`🎯 VAISH loaded ${client.commands.size} commands successfully`);
 }
 
 // 🎭 Dynamic Event Loader
@@ -169,14 +169,14 @@ function loadEvents() {
         client.on(event.name, (...args) => event.execute(...args, client));
       }
 
-      console.log(`🎪 Vaish event loaded: ${event.name}`);
+      console.log(`🎪 VAISH event loaded: ${event.name}`);
     } catch (error) {
       console.error(`❌ Failed to load event: ${filePath}`, error);
     }
   }
 }
 
-// 🚀 Vaish Startup Sequence
+// 🚀 VAISH Startup Sequence
 client.once("ready", async () => {
   console.log(`
   ╔═══════════════════════════════════════════════════════════════╗
@@ -203,7 +203,7 @@ client.once("ready", async () => {
 
   if (!scheduler) {
     scheduler = new TaskScheduler(client);
-    console.log("⏰ Vaish Task Scheduler initialized");
+    console.log("⏰ VAISH Task Scheduler initialized");
   }
 
   // Update bot stats
@@ -219,7 +219,7 @@ client.once("ready", async () => {
   // Rotate activity status every 30 seconds
   setInterval(updateBotActivity, 30000);
 
-  console.log("🎯 Vaish is fully operational and ready to serve!");
+  console.log("🎯 VAISH is fully operational and ready to serve!");
 });
 
 // 🔄 Update Bot Activity Status
@@ -246,14 +246,14 @@ process.on("uncaughtException", (error) => {
 
   // Graceful shutdown
   setTimeout(() => {
-    console.log("🔄 Vaish is restarting due to critical error...");
+    console.log("🔄 VAISH is restarting due to critical error...");
     process.exit(1);
   }, 5000);
 });
 
 // 🎯 Graceful Shutdown Handler
 process.on("SIGINT", async () => {
-  console.log("\n🛑 Vaish shutdown initiated...");
+  console.log("\n🛑 VAISH shutdown initiated...");
 
   try {
     if (db) {
@@ -262,9 +262,9 @@ process.on("SIGINT", async () => {
     }
 
     client.destroy();
-    console.log("🤖 Vaish client destroyed");
+    console.log("🤖 VAISH client destroyed");
 
-    console.log("✅ Vaish shutdown complete");
+    console.log("✅ VAISH shutdown complete");
     process.exit(0);
   } catch (error) {
     console.error("❌ Error during shutdown:", error);
@@ -272,10 +272,10 @@ process.on("SIGINT", async () => {
   }
 });
 
-// 🚀 Initialize Vaish Bot
-async function startVaish() {
+// 🚀 Initialize VAISH Bot
+async function startVAISH() {
   try {
-    console.log("🔄 Starting Vaish Bot...");
+    console.log("🔄 Starting VAISH Bot...");
 
     // Load commands and events
     loadCommands();
@@ -284,7 +284,7 @@ async function startVaish() {
     // Login to Discord
     await client.login(process.env.DISCORD_TOKEN);
   } catch (error) {
-    console.error("❌ Failed to start Vaish Bot:", error);
+    console.error("❌ Failed to start VAISH Bot:", error);
     console.log("🔑 Please check your DISCORD_TOKEN in the .env file");
     console.log("💡 Ensure your bot token is valid and has proper permissions");
     process.exit(1);
@@ -292,4 +292,4 @@ async function startVaish() {
 }
 
 // 🎬 Start the show!
-startVaish();
+startVAISH();

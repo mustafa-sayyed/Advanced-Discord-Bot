@@ -1,7 +1,7 @@
 {
-  "name": "vaish-discord-bot",
+  "name": "VAISH-discord-bot",
   "version": "2.0.0",
-  "description": "Vaish - Ultra-modern AI-powered Discord bot with advanced features and beautiful UI",
+  "description": "VAISH - Ultra-modern AI-powered Discord bot with advanced features and beautiful UI",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -16,21 +16,21 @@
     "ai",
     "gemini",
     "modern",
-    "vaish",
+    "VAISH",
     "advanced",
     "typescript-ready",
     "mongodb",
     "open-source"
   ],
-  "author": "Vaish Development Team",
+  "author": "VAISH Development Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vaish-bot/discord-bot"
+    "url": "https://github.com/VAISH-bot/discord-bot"
   },
-  "homepage": "https://vaish-bot.com",
+  "homepage": "https://VAISH-bot.com",
   "bugs": {
-    "url": "https://github.com/vaish-bot/discord-bot/issues"
+    "url": "https://github.com/VAISH-bot/discord-bot/issues"
   },
   "dependencies": {
     "@google/generative-ai": "^0.7.1",

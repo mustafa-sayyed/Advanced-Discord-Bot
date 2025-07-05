@@ -1,8 +1,8 @@
-# 🤝 Contributing to Vaish Discord Bot
+# 🤝 Contributing to VAISH Discord Bot
 
-Thank you for your interest in contributing to Vaish! Our bot represents the cutting-edge of open-source Discord bot development, where developers collaborate to create the most advanced, feature-rich bot that remains completely free and community-driven.
+Thank you for your interest in contributing to VAISH! Our bot represents the cutting-edge of open-source Discord bot development, where developers collaborate to create the most advanced, feature-rich bot that remains completely free and community-driven.
 
-## 🌟 Vaish's Open Source Philosophy
+## 🌟 VAISH's Open Source Philosophy
 
 ### Why We Believe in Open Source Excellence
 
@@ -135,6 +135,29 @@ git push origin feature/amazing-new-feature
 - 🌐 **Web Dashboard** - Browser-based management interface
 - 🔌 **Plugin System** - Modular architecture for extensibility
 
+## 🤝 Contributing
+
+### Getting Started
+
+1. **Fork** the repository
+2. **Clone** your fork locally
+3. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+4. **Code** your improvements
+5. **Test** thoroughly
+6. **Commit** with descriptive messages
+7. **Push** to your branch
+8. **Submit** a Pull Request
+
+### Development Guidelines
+
+- **Code Style**: Consistent formatting with Prettier
+- **Documentation**: Update README for new features
+- **Testing**: Test all new commands thoroughly
+- **Error Handling**: Implement robust error handling
+- **Database**: Follow existing schema patterns
+
+---
+
 ### 📝 Code Standards
 
 **File Structure:**
@@ -151,99 +174,15 @@ models/
 ├── schemas.js                # Database schemas
 ```
 
-**Command Template:**
+````
 
-```javascript
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const Database = require("../../utils/database");
-
-module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("command-name")
-    .setDescription("Clear, concise description"),
-
-  cooldown: 5, // Optional cooldown in seconds
-
-  async execute(interaction) {
-    try {
-      await interaction.deferReply();
-
-      // Your command logic here
-
-      const embed = new EmbedBuilder()
-        .setColor("#5865F2") // Discord blue
-        .setTitle("Command Title")
-        .setDescription("Response message")
-        .setTimestamp();
-
-      await interaction.editReply({ embeds: [embed] });
-    } catch (error) {
-      console.error(`Error in ${interaction.commandName}:`, error);
-
-      const errorMessage =
-        interaction.replied || interaction.deferred
-          ? {
-              content: "❌ An error occurred while processing your request.",
-              ephemeral: true,
-            }
-          : {
-              content: "❌ An error occurred while processing your request.",
-              ephemeral: true,
-            };
-
-      if (interaction.replied || interaction.deferred) {
-        await interaction.editReply(errorMessage);
-      } else {
-        await interaction.reply(errorMessage);
-      }
-    }
-  },
-};
-```
-
-**Coding Best Practices:**
-
-- **Error Handling** - Always wrap in try/catch blocks
-- **User Feedback** - Provide clear, helpful error messages
-- **Database Efficiency** - Use proper indexing and queries
-- **Memory Management** - Clean up resources properly
-- **Security** - Validate inputs and check permissions
-- **Consistency** - Follow existing patterns and naming conventions
-
-### 🎨 UI/UX Guidelines
-
-**Embed Design:**
-
-```javascript
-const embed = new EmbedBuilder()
-  .setColor("#5865F2") // Consistent Discord blue
-  .setTitle("📊 Clear Title") // Use relevant emojis
-  .setDescription("Helpful description")
-  .addFields({
-    name: "🎯 Field Name",
-    value: "Clear, formatted value",
-    inline: true,
-  })
-  .setFooter({
-    text: `Requested by ${interaction.user.tag}`,
-    iconURL: interaction.user.displayAvatarURL(),
-  })
-  .setTimestamp();
-```
-
-**Color Scheme:**
-
-- **Primary**: `#5865F2` (Discord Blue)
-- **Success**: `#00FF00` (Green)
-- **Warning**: `#FFFF00` (Yellow)
-- **Error**: `#FF0000` (Red)
-- **Info**: `#00FFFF` (Cyan)
 
 **Emoji Usage:**
 
 - Use relevant, clear emojis in titles and field names
 - Keep it professional but friendly
 - Maintain consistency across commands
+
 
 ## 🐛 Bug Reports
 
@@ -282,7 +221,7 @@ What actually happens
 
 **Additional Context**
 Screenshots, logs, or other relevant information
-```
+````
 
 ## ✨ Feature Requests
 

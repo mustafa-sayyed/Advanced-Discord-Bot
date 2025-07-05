@@ -1,4 +1,4 @@
-# 🤖 Vaish - Ultra-Modern AI Discord Bot
+# 🤖 VAISH - Ultra-Modern AI Discord Bot
 
 <div align="center">
 
@@ -9,7 +9,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-**🚀 Meet Vaish - The most advanced, feature-rich Discord bot that you own completely!**  
+**🚀 Meet VAISH - The most advanced, feature-rich Discord bot that you own completely!**  
 **✨ No subscriptions • 🔓 Full ownership • 🛡️ Privacy-first • ⚡ Lightning-fast**
 
 [🖼️ Screenshots](#️-screenshots) • [🎯 Features](#-features) • [🔧 Installation](#-installation) • [🌐 Deploy to Render](#-deploy-to-render) • [📖 Commands](#-commands) • [🤝 Contributing](#-contributing)
@@ -18,72 +18,85 @@
 
 ---
 
-## 🖼️ Screenshots
+## 📊 Project Statistics
 
 <div align="center">
 
-### 🎨 Beautiful User Interface Showcase
-
 <table>
 <tr>
-<td width="33%">
-
-**💎 Points System**
-<img src="screenshots/points-system.png" alt="Points System" width="100%">
-<i>Modern points giving interface with reason tracking</i>
-
+<td align="center">
+<img src="https://img.shields.io/github/stars/VAISH-bot/discord-bot?style=social" alt="GitHub Stars">
+<br><b>Stars</b>
 </td>
-<td width="33%">
 
-**📊 User Profiles**
-<img src="screenshots/user-profile.png" alt="User Profile" width="100%">
-<i>Comprehensive profile with XP, points, and activity stats</i>
-
+<td align="center">
+<img src="https://img.shields.io/github/forks/VAISH-bot/discord-bot?style=social" alt="GitHub Forks">
+<br><b>Forks</b>
 </td>
-<td width="33%">
 
-**� AI Assistant**
-<img src="screenshots/ai-assistant.png" alt="AI Assistant" width="100%">
-<i>Clean Q&A interface powered by Google Gemini</i>
-
+<td align="center">
+<img src="https://img.shields.io/github/issues/VAISH-bot/discord-bot" alt="GitHub Issues">
+<br><b>Open Issues</b>
 </td>
-</tr>
-<tr>
-<td width="33%">
 
-**🎫 Ticket System**
-<img src="screenshots/ticket-system.png" alt="Ticket System" width="100%">
-<i>Professional ticket creation with status tracking</i>
-
-</td>
-<td width="33%">
-
-**📊 Interactive Polls**
-<img src="screenshots/poll-system.png" alt="Interactive Polls" width="100%">
-<i>Modern Discord components with real-time voting</i>
-
-</td>
-<td width="33%">
-
-**🏆 Leaderboards**
-<img src="screenshots/leaderboard.png" alt="Leaderboards" width="100%">
-<i>Beautiful leaderboards for points and XP rankings</i>
-
+<td align="center">
+<img src="https://img.shields.io/github/contributors/VAISH-bot/discord-bot" alt="GitHub Contributors">
+<br><b>Contributors</b>
 </td>
 </tr>
 </table>
 
-**🎮 Fun Commands & 🔧 Admin Dashboard**
+</div>
+
+## 🖼️ Screenshots
+
+### 🎨 Full Feature Showcase (Professional Grid)
+
+<div align="center">
 
 <table>
 <tr>
-<td width="50%">
-<img src="screenshots/fun-commands.png" alt="Vaish Fun Commands" width="100%">
-<i>Engaging games and entertainment features powered by Vaish</i>
+<td width="33%">
+<img src="screenshots/Birthday.png" alt="Birthday System" width="100%">
+<i>🎂 Birthday System</i>
 </td>
-<td width="50%">
-<img src="screenshots/admin-dashboard.png" alt="Vaish Admin Dashboard" width="100%">
-<i>Comprehensive moderation and configuration tools for Vaish</i>
+<td width="33%">
+<img src="screenshots/DailyPoints.png" alt="Daily Points" width="100%">
+<i>💰 Daily Points Rewards</i>
+</td>
+<td width="33%">
+<img src="screenshots/FeedbackForm.png" alt="Feedback Form" width="100%">
+<i>📝 Feedback Collection</i>
+</td>
+</tr>
+
+<tr>
+<td width="33%">
+<img src="screenshots/FeedBackSuggestion.png" alt="Feedback Suggestions" width="100%">
+<i>💡 Suggestion Box</i>
+</td>
+<td width="33%">
+<img src="screenshots/LeaderboardPong.png" alt="Leaderboard" width="100%">
+<i>🏆 Global Leaderboards</i>
+</td>
+<td width="33%">
+<img src="screenshots/MainMenu.png" alt="Main Menu" width="100%">
+<i>📋 Main Menu Interface</i>
+</td>
+</tr>
+
+<tr>
+<td width="33%">
+<img src="screenshots/Memes.png" alt="Memes System" width="100%">
+<i>😂 Meme Integration</i>
+</td>
+<td width="33%">
+<img src="screenshots/PerformanceDashboard.png" alt="Performance Dashboard" width="100%">
+<i>📊 Server Performance Dashboard</i>
+</td>
+<td width="33%">
+<img src="screenshots/RemainderSetter.png" alt="Reminder Setter" width="100%">
+<i>⏰ Smart Reminders</i>
 </td>
 </tr>
 </table>
@@ -92,7 +105,7 @@
 
 ---
 
-## ✨ Why Choose Vaish?
+## ✨ Why Choose VAISH?
 
 💰 **100% Free Forever** - No monthly subscriptions, no hidden costs, completely free  
 🔓 **Complete Ownership** - Every line of code belongs to you, no vendor lock-in  
@@ -234,8 +247,8 @@
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/vaish-discord-bot.git
-   cd vaish-discord-bot
+   git clone https://github.com/yourusername/VAISH-discord-bot.git
+   cd VAISH-discord-bot
    ```
 
 2. **Install dependencies**
@@ -285,7 +298,7 @@ Deploy your bot for free on Render with these simple steps:
 3. Connect your GitHub repository
 4. Configure your service:
    ```
-   Name: Vaish - Ultra-Modern AI Discord Bot
+   Name: VAISH - Ultra-Modern AI Discord Bot
    Environment: Node
    Build Command: npm install
    Start Command: node index.js
@@ -486,7 +499,7 @@ We welcome contributions from developers of all skill levels! This project embod
 ### Get Help
 
 - 📖 **Documentation** - Check this README first
-- 🐛 **Bug Reports** - [Create an issue](https://github.com/vaish-bot/discord-bot/issues)
+- 🐛 **Bug Reports** - [Create an issue](https://github.com/VAISH-bot/discord-bot/issues)
 - 💡 **Feature Requests** - Share your ideas with the community
 - 💬 **Discord Server** - Join our community server for live help
 
@@ -540,20 +553,11 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **Clone this repository and deploy to Render in under 10 minutes!**
 
-[🌟 Star this repo](https://github.com/vaish-bot/discord-bot) • [🍴 Fork & Deploy](https://github.com/vaish-bot/discord-bot/fork) • [📖 Read the docs](#-quick-start)
+[🌟 Star this repo](https://github.com/VAISH-bot/discord-bot) • [🍴 Fork & Deploy](https://github.com/VAISH-bot/discord-bot/fork) • [📖 Read the docs](#-quick-start)
 
 ---
 
-### 📊 Project Stats
-
-![GitHub Stars](https://img.shields.io/github/stars/vaish-bot/discord-bot?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/vaish-bot/discord-bot?style=social)
-![GitHub Issues](https://img.shields.io/github/issues/vaish-bot/discord-bot)
-![GitHub Contributors](https://img.shields.io/github/contributors/vaish-bot/discord-bot)
-
----
-
-_Built with ❤️ by the Vaish development team_  
+_Built with ❤️ by the VAISH development team_  
 _"Empowering Discord communities with free, powerful, and intelligent bot solutions"_
 
 </div>

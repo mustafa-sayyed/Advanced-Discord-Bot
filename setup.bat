@@ -1,5 +1,5 @@
 @echo off
-echo 🚀 VaishBot Setup Script
+echo 🚀 VAISH Bot Setup Script
 echo =====================
 echo.
 
