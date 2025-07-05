@@ -12,7 +12,7 @@
 **🚀 Meet VAISH - The most advanced, feature-rich Discord bot that you own completely!**  
 **✨ No subscriptions • 🔓 Full ownership • 🛡️ Privacy-first • ⚡ Lightning-fast**
 
-[🖼️ Screenshots](#️-screenshots) • [🎯 Features](#-features) • [🔧 Installation](#-installation) • [🌐 Deploy to Render](#-deploy-to-render) • [📖 Commands](#-commands) • [🤝 Contributing](#-contributing)
+[🖼️ Screenshots](#️-screenshots) • [🎯 Features](#-features) • [🔧 Installation](#-installation) • [🌐 Deploy to Render](#-deploy-to-render) • [📖 Commands](#-commands) • [🤝 Contributing](./CONTRIBUTING.md)
 
 </div>
 
@@ -450,50 +450,6 @@ mongod --dbpath ./data
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions from developers of all skill levels! This project embodies the open-source philosophy of community-driven development.
-
-### 🌟 Open Source Philosophy
-
-**Why Open Source?**
-
-- 💰 **No Subscriptions** - Stop paying monthly fees for basic bot features
-- 🔓 **Full Control** - Own your bot's code and data completely
-- 🛡️ **Privacy** - Your server data stays with you
-- 🚀 **Innovation** - Community-driven feature development
-- 📚 **Learning** - Perfect for developers to learn and grow
-
-### Getting Started
-
-1. **Fork** the repository
-2. **Clone** your fork locally
-3. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-4. **Code** your improvements
-5. **Test** thoroughly
-6. **Commit** with descriptive messages
-7. **Push** to your branch
-8. **Submit** a Pull Request
-
-### Development Guidelines
-
-- **Code Style**: Consistent formatting with Prettier
-- **Documentation**: Update README for new features
-- **Testing**: Test all new commands thoroughly
-- **Error Handling**: Implement robust error handling
-- **Database**: Follow existing schema patterns
-
-### Ways to Contribute
-
-- 🐛 **Bug Fixes** - Help squash bugs and improve stability
-- ✨ **New Features** - Add exciting new commands and capabilities
-- 📚 **Documentation** - Improve guides and documentation
-- 🎨 **UI/UX** - Enhance embed designs and user experience
-- 🔧 **Performance** - Optimize code and database queries
-- 🌐 **Translations** - Add support for more languages
-
----
-
 ## 📞 Support & Community
 
 ### Get Help
@@ -512,19 +468,17 @@ We welcome contributions from developers of all skill levels! This project embod
 
 ---
 
+---
+
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for full details.
 
-**What this means:**
+<div align="center">
 
-- ✅ **Commercial Use** - Use in commercial projects
-- ✅ **Modification** - Modify the code as needed
-- ✅ **Distribution** - Share with others
-- ✅ **Private Use** - Use for personal projects
-- ✅ **Attribution** - Just keep the license notice
+![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
----
+</div>
 
 ## 🏆 Acknowledgments
 
