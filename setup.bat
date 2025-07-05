@@ -1,5 +1,5 @@
 @echo off
-echo 🚀 NovaBot Setup Script
+echo 🚀 VaishBot Setup Script
 echo =====================
 echo.
 
