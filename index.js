@@ -292,6 +292,7 @@ async function startVAISH() {
 }
 
 
+
 // 🌐 Minimal Express server to keep Render web service alive
 const express = require("express");
 const app = express();
@@ -304,6 +305,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌐 Web server running on port ${PORT}`);
 });
-
 // 🎬 Start the show!
 startVAISH();
+
