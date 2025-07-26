@@ -1,22 +1,24 @@
+name: Star Reminder on Issues and PRs
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
 jobs:
-  post-comment:
+  comment:
     runs-on: ubuntu-latest
-    steps be undefined. This causes the action to receive:
-      - name: Post a friendly reminder to star the repo on issues
-        if: github.event_name an invalid `issue-number`.
-
-**Solution:**
-Update the ` == 'issues'
-        uses: peter-evans/create-or-updateissue-number` input to use a conditional expression that selects the appropriate number based on-comment@v4
+    steps:
+      - name: Add star reminder comment
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.G the event typeITHUB_TOKEN }}
-          issue-number: ${{ github.event.issue.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number || github.event.pull_request.number }}
           body: |
-            ## 🌟. Here’s a corrected version:
+            ## 🌟 Thanks for contributing!
 
-```yaml
-issue-number: $ Thank you for contributing!
-            ...
-      - name: Post a friendly reminder to star the repo on PR{{ github.event.issue.number != null && github.event.issues
-        if: github.event_name == 'pull_request'
-       .number || github.event.pull_request.number }}
+            Hey there! If you find this project useful, consider giving it a ⭐ on GitHub!  
+            👉 [Star the repo here](https://github.com/harshendram/Advanced-Discord-Bot)
+
+            Your support helps us grow! 💖
