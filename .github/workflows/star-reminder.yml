@@ -15,26 +15,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Post star reminder comment
-        uses: actions/github-script@v7
+      - name: Get issue or PR number
+        id: vars
+        run: |
+          if [[ "${{ github.event_name }}" == "issues" ]]; then
+            echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_OUTPUT
+          else
+            echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post comment for issues (uses GITHUB_TOKEN)
+        if: github.event_name == 'issues'
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          script: |
-            const issueNumber = context.issue?.number || context.payload.pull_request?.number;
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
+          body: |
+            ## 🌟 Thanks for contributing!
 
-            const commentBody = `## 🌟 Thanks for contributing!
-
-            Hey there! Thanks for opening this Issue/PR on the 
-            [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
+            Thanks for opening this issue on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot)!
 
             If you found this project helpful, please consider giving it a ⭐:
 
-            👉 [Click here to star the repo](https://github.com/harshendram/Advanced-Discord-Bot)
+            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
 
-            Your support means a lot to us! 💖`;
+            We appreciate your support! 💖
 
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              body: commentBody
-            });
+      - name: Post comment for PRs (uses GH_PAT)
+        if: github.event_name == 'pull_request_target'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+          issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
+          body: |
+            ## 🌟 Thanks for contributing!
+
+            Thanks for opening this pull request on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot)!
+
+            If you found this project helpful, please consider giving it a ⭐:
+
+            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
+
+            Your contribution matters! 💪
