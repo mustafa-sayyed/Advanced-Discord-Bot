@@ -1,0 +1,26 @@
+name: Star Reminder on Issues and PRs
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  post-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post a friendly reminder to star the repo
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number || github.event.pull_request.number }}
+          body: |
+            ## 🌟 Thank you for contributing!
+
+            We really appreciate your input to the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
+
+            If you find this project helpful or interesting, consider giving it a ⭐ on GitHub to support us:
+            👉 https://github.com/harshendram/Advanced-Discord-Bot
+
+            Happy coding! 💻✨
