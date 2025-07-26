@@ -10,15 +10,40 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Add star reminder comment
+      - name: Add star reminder comment (Issue)
         uses: peter-evans/create-or-update-comment@v4
+        if: github.event_name == 'issues'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.issue.number || github.event.pull_request.number }}
+          issue-number: ${{ github.event.issue.number }}
           body: |
-            ## 🌟 Thanks for contributing!
+            <h2 align="center">🌟 Thanks for contributing!</h2>
+            <p align="center">
+              If you find this project useful,<br>
+              <b>consider giving it a ⭐ on GitHub!</b>
+              <br><br>
+              <a href="https://github.com/harshendram/Advanced-Discord-Bot">
+                <img src="https://img.shields.io/github/stars/harshendram/Advanced-Discord-Bot?style=social" alt="GitHub Stars"/>
+              </a>
+              <br><br>
+              Your support helps us grow! 💖
+            </p>
 
-            Hey there! If you find this project useful, consider giving it a ⭐ on GitHub!  
-            👉 [Star the repo here](https://github.com/harshendram/Advanced-Discord-Bot)
-
-            Your support helps us grow! 💖
+      - name: Add star reminder comment (PR)
+        uses: peter-evans/create-or-update-comment@v4
+        if: github.event_name == 'pull_request'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            <h2 align="center">🌟 Thanks for contributing!</h2>
+            <p align="center">
+              If you find this project useful,<br>
+              <b>consider giving it a ⭐ on GitHub!</b>
+              <br><br>
+              <a href="https://github.com/harshendram/Advanced-Discord-Bot">
+                <img src="https://img.shields.io/github/stars/harshendram/Advanced-Discord-Bot?style=social" alt="GitHub Stars"/>
+              </a>
+              <br><br>
+              Your support helps us grow! 💖
+            </p>
