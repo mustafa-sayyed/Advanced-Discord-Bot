@@ -15,21 +15,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine issue or PR number and token to use
+      - name: Determine issue or PR number
         id: vars
         run: |
           if [[ "${{ github.event_name }}" == "issues" ]]; then
             echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
-            echo "USE_TOKEN=GITHUB_TOKEN" >> "$GITHUB_OUTPUT"
           else
             echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
-            echo "USE_TOKEN=GH_PAT" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Post star reminder comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets[steps.vars.outputs.USE_TOKEN] }}
+          token: ${{ github.token }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for contributing!
