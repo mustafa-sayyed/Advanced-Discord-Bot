@@ -9,6 +9,7 @@ on:
 permissions:
   issues: write
   pull-requests: write
+  contents: read
 
 jobs:
   post-comment:
@@ -27,7 +28,7 @@ jobs:
       - name: Post star reminder comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for contributing!
