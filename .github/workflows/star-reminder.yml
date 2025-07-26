@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get issue or PR number
+      - name: Determine issue or PR number
         id: vars
         run: |
           if [[ "${{ github.event_name }}" == "issues" ]]; then
@@ -24,7 +24,7 @@ jobs:
             echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Post comment for issues (uses GITHUB_TOKEN)
+      - name: Comment on Issue (uses GITHUB_TOKEN)
         if: github.event_name == 'issues'
         uses: peter-evans/create-or-update-comment@v4
         with:
@@ -33,15 +33,15 @@ jobs:
           body: |
             ## 🌟 Thanks for contributing!
 
-            Thanks for opening this issue on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot)!
+            Hey there! Thanks for opening this **Issue** on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
 
-            If you found this project helpful, please consider giving it a ⭐:
+            If you found this project helpful, please consider giving it a ⭐ to support us:
 
             👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
 
-            We appreciate your support! 💖
+            Your support means a lot to us! 💖
 
-      - name: Post comment for PRs (uses GH_PAT)
+      - name: Comment on PR (uses GH_PAT)
         if: github.event_name == 'pull_request_target'
         uses: peter-evans/create-or-update-comment@v4
         with:
@@ -50,10 +50,10 @@ jobs:
           body: |
             ## 🌟 Thanks for contributing!
 
-            Thanks for opening this pull request on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot)!
+            Hey there! Thanks for opening this **Pull Request** on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot)!
 
-            If you found this project helpful, please consider giving it a ⭐:
+            If you found this project helpful, please consider giving it a ⭐ to support us:
 
             👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
 
-            Your contribution matters! 💪
+            Your contributions and stars help us grow! 🚀
