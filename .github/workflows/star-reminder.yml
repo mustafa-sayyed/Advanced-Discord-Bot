@@ -3,15 +3,19 @@ name: ⭐ Star Reminder on Issues and PRs
 on:
   issues:
     types: [opened]
-  pull_request:
+  pull_request_target:
     types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   post-comment:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get issue/PR number
+      - name: Determine the issue or PR number
         id: vars
         run: |
           if [[ "${{ github.event_name }}" == "issues" ]]; then
@@ -23,7 +27,7 @@ jobs:
       - name: Post star reminder
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GH_PAT }} # MUST be the correct, working PAT
+          token: ${{ secrets.GH_PAT }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for contributing!
