@@ -34,11 +34,11 @@ jobs:
             ## 🌟 Thanks for contributing!
             Thanks for opening this **issue**. Please consider giving this repo a ⭐ if it helps you!
 
-      - name: Comment on PR (GH_PAT)
+      - name: Comment on PR (GITHUB_TOKEN)
         if: github.event_name == 'pull_request_target'
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for your Pull Request!
