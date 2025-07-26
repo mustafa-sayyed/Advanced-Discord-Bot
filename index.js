@@ -291,5 +291,23 @@ async function startVAISH() {
   }
 }
 
+
+// <<<<<<< HEAD
+// =======
+
+// >>>>>>> 32cde73
+// // 🌐 Minimal Express server to keep Render web service alive
+// const express = require("express");
+// const app = express();
+// const PORT = process.env.PORT || 3000;
+
+// app.get("/", (req, res) => {
+//   res.send("🟢 VAISH is alive and running!");
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`🌐 Web server running on port ${PORT}`);
+// });
 // 🎬 Start the show!
 startVAISH();
+
