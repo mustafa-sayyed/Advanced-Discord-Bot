@@ -1,4 +1,4 @@
-name: Star Reminder on Issues and PRs
+name: ⭐ Star Reminder on Issues and PRs
 
 on:
   issues:
@@ -7,43 +7,28 @@ on:
     types: [opened]
 
 jobs:
-  comment:
+  add-comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Add star reminder comment (Issue)
-        uses: peter-evans/create-or-update-comment@v4
-        if: github.event_name == 'issues'
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            <h2 align="center">🌟 Thanks for contributing!</h2>
-            <p align="center">
-              If you find this project useful,<br>
-              <b>consider giving it a ⭐ on GitHub!</b>
-              <br><br>
-              <a href="https://github.com/harshendram/Advanced-Discord-Bot">
-                <img src="https://img.shields.io/github/stars/harshendram/Advanced-Discord-Bot?style=social" alt="GitHub Stars"/>
-              </a>
-              <br><br>
-              Your support helps us grow! 💖
-            </p>
+      - name: Determine issue or PR number
+        id: vars
+        run: |
+          if [[ "${{ github.event_name }}" == "issues" ]]; then
+            echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Add star reminder comment (PR)
+      - name: Post a comment
         uses: peter-evans/create-or-update-comment@v4
-        if: github.event_name == 'pull_request'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
-            <h2 align="center">🌟 Thanks for contributing!</h2>
-            <p align="center">
-              If you find this project useful,<br>
-              <b>consider giving it a ⭐ on GitHub!</b>
-              <br><br>
-              <a href="https://github.com/harshendram/Advanced-Discord-Bot">
-                <img src="https://img.shields.io/github/stars/harshendram/Advanced-Discord-Bot?style=social" alt="GitHub Stars"/>
-              </a>
-              <br><br>
-              Your support helps us grow! 💖
-            </p>
+            ## 🌟 Thanks for contributing!
+
+            Hey there! If you found this project useful, consider giving it a ⭐ on GitHub:
+
+            👉 [Click here to star](https://github.com/harshendram/Advanced-Discord-Bot)
+
+            Your support helps us grow! 🙌
