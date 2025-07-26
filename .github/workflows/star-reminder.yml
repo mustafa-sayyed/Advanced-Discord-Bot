@@ -1,0 +1,37 @@
+name: ⭐ Star Reminder on Issues and PRs
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  post-comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get issue/PR number
+        id: vars
+        run: |
+          if [[ "${{ github.event_name }}" == "issues" ]]; then
+            echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Post star reminder
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GH_PAT }} # MUST be the correct, working PAT
+          issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
+          body: |
+            ## 🌟 Thanks for contributing!
+
+            Hey there! Thanks for opening this Issue/PR on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
+
+            If you found this project useful, please consider giving it a ⭐:
+
+            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
+
+            Your support helps us grow! 💖
