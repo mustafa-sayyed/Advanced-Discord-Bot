@@ -15,27 +15,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine the issue or PR number
+      - name: Determine issue or PR number and token to use
         id: vars
         run: |
           if [[ "${{ github.event_name }}" == "issues" ]]; then
             echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
+            echo "USE_TOKEN=GITHUB_TOKEN" >> "$GITHUB_OUTPUT"
           else
             echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+            echo "USE_TOKEN=GH_PAT" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Post star reminder
+      - name: Post star reminder comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets[steps.vars.outputs.USE_TOKEN] }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for contributing!
 
-            Hey there! Thanks for opening this Issue/PR on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
+            Hey there! Thanks for opening this Issue/PR on the 
+            [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
 
-            If you found this project useful, please consider giving it a ⭐:
+            If you found this project helpful, please consider giving it a ⭐:
 
-            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
+            👉 [Click here to star the repo](https://github.com/harshendram/Advanced-Discord-Bot)
 
-            Your support helps us grow! 💖
+            Your support means a lot to us! 💖
