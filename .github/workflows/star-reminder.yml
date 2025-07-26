@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Determine issue or PR number
         id: vars
         run: |
@@ -26,7 +29,7 @@ jobs:
           fi
 
       - name: Post star reminder comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
