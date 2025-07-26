@@ -24,7 +24,7 @@ jobs:
             echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Comment on Issue (uses GITHUB_TOKEN)
+      - name: Comment on Issue (GITHUB_TOKEN)
         if: github.event_name == 'issues'
         uses: peter-evans/create-or-update-comment@v4
         with:
@@ -32,28 +32,15 @@ jobs:
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for contributing!
+            Thanks for opening this **issue**. Please consider giving this repo a ⭐ if it helps you!
 
-            Hey there! Thanks for opening this **Issue** on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
-
-            If you found this project helpful, please consider giving it a ⭐ to support us:
-
-            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
-
-            Your support means a lot to us! 💖
-
-      - name: Comment on PR (uses GH_PAT)
+      - name: Comment on PR (GH_PAT)
         if: github.event_name == 'pull_request_target'
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GH_PAT }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
-            ## 🌟 Thanks for contributing!
-
-            Hey there! Thanks for opening this **Pull Request** on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot)!
-
-            If you found this project helpful, please consider giving it a ⭐ to support us:
-
-            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
-
-            Your contributions and stars help us grow! 🚀
+            ## 🌟 Thanks for your Pull Request!
+            This project runs on community power 💪 — please consider starring us:
+            👉 https://github.com/harshendram/Advanced-Discord-Bot
