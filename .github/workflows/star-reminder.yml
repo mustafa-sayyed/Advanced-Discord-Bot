@@ -7,10 +7,11 @@ on:
     types: [opened]
 
 jobs:
-  add-comment:
+  post-comment:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Determine issue or PR number
+      - name: Determine the issue or PR number
         id: vars
         run: |
           if [[ "${{ github.event_name }}" == "issues" ]]; then
@@ -19,16 +20,18 @@ jobs:
             echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Post a comment
+      - name: Post star reminder comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}  # Use the personal access token
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
             ## 🌟 Thanks for contributing!
 
-            Hey there! If you found this project useful, consider giving it a ⭐ on GitHub:
+            Hey there! Thanks for opening this Issue/PR on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
 
-            👉 [Click here to star](https://github.com/harshendram/Advanced-Discord-Bot)
+            If you found this project useful or interesting, consider giving it a ⭐ to support us!
 
-            Your support helps us grow! 🙌
+            👉 [Click here to star the repo](https://github.com/harshendram/Advanced-Discord-Bot)
+
+            Your support helps the project grow! 🚀
