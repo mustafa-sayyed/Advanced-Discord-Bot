@@ -1,37 +1,38 @@
-name: ⭐ Star Reminder on Issues and PRs
+name: ⭐ Star Reminder on Issues
 
 on:
   issues:
     types: [opened]
-  pull_request:
-    types: [opened]
+
+permissions:
+  issues: write
 
 jobs:
   post-comment:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get issue/PR number
+      - name: Get issue number
         id: vars
-        run: |
-          if [[ "${{ github.event_name }}" == "issues" ]]; then
-            echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "TARGET_NUMBER=${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
-          fi
+        run: echo "TARGET_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_OUTPUT
 
-      - name: Post star reminder
+      - name: Comment on Issue
         uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GH_PAT }} # MUST be the correct, working PAT
+          token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ steps.vars.outputs.TARGET_NUMBER }}
           body: |
-            ## 🌟 Thanks for contributing!
+            ---
+            ## ✨ Thank You for Contributing!
 
-            Hey there! Thanks for opening this Issue/PR on the [Advanced-Discord-Bot](https://github.com/harshendram/Advanced-Discord-Bot) project!
+            👋 Hey @${{ github.actor }}, thanks for opening this issue in the [**Advanced-Discord-Bot**](https://github.com/harshendram/Advanced-Discord-Bot) repository.
 
-            If you found this project useful, please consider giving it a ⭐:
+            > Your contribution helps us grow and improve this project 💪
 
-            👉 [Star this repo](https://github.com/harshendram/Advanced-Discord-Bot)
+            ---
+            🌟 **Love this project? Show your support:**
+            👉 [Give us a ⭐ on GitHub](https://github.com/harshendram/Advanced-Discord-Bot)
 
-            Your support helps us grow! 💖
+            _We appreciate your help and interest in making this better!_
+
+            — The Maintainers 💖
