@@ -94,6 +94,15 @@ const userProfileSchema = new mongoose.Schema(
     username: String,
     discriminator: String,
     joinedAt: Date,
+    // Economy
+    wallet: {
+      type: Number,
+      default: 0,
+    },
+    bank: {
+      type: Number,
+      default: 0,
+    },
     // XP & Activity
     totalXp: {
       type: Number,
@@ -470,6 +479,23 @@ const antiRaidSchema = new mongoose.Schema(
   }
 );
 
+// ⚙️ Guild Economy Schema
+const guildEconomySchema = new mongoose.Schema({
+  guildId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  workAmount: {
+    type: Number,
+    default: 100, // Default amount a user gets from /work
+  },
+  workCooldown: {
+    type: Number,
+    default: 3600, // Default cooldown in seconds (1 hour)
+  },
+});
+
 // Create compound indexes for better query performance
 userProfileSchema.index({ userId: 1, guildId: 1 }, { unique: true });
 userProfileSchema.index({ guildId: 1, totalXp: -1 });
@@ -490,6 +516,7 @@ module.exports = {
   XPTransaction: mongoose.model("XPTransaction", xpTransactionSchema),
   Leaderboard: mongoose.model("Leaderboard", leaderboardSchema),
   Birthday: mongoose.model("Birthday", birthdaySchema),
+  GuildEconomy: mongoose.model('GuildEconomy', guildEconomySchema),
   TruthOrDareConfig: mongoose.model(
     "TruthOrDareConfig",
     truthOrDareConfigSchema

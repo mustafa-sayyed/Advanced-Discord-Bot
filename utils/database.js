@@ -9,6 +9,7 @@ const {
   Birthday,
   TruthOrDareConfig,
   AntiRaid,
+  GuildEconomy,
 } = require("../models/schemas");
 
 class Database {
@@ -28,6 +29,7 @@ class Database {
     this.TruthOrDareConfig = TruthOrDareConfig;
     this.AntiRaid = AntiRaid;
     this.GuildConfig = ServerConfig; // Alias for ServerConfig
+    this.GuildEconomy = GuildEconomy;
   }
 
   static async getInstance() {
@@ -611,6 +613,21 @@ class Database {
     } catch (error) {
       console.error("Error getting user points:", error);
       throw error;
+    }
+  }
+
+  async getGuildEconomy(guildId) {
+    try {
+      let economySettings = await this.GuildEconomy.findOne({ guildId });
+      if (!economySettings) {
+        // If no settings exist, create them with default values
+        economySettings = new this.GuildEconomy({ guildId });
+        await economySettings.save();
+      }
+      return economySettings;
+    } catch (error) {
+      console.error('Error getting guild economy settings:', error);
+      return null;
     }
   }
 
