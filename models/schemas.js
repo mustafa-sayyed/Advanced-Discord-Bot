@@ -94,6 +94,15 @@ const userProfileSchema = new mongoose.Schema(
     username: String,
     discriminator: String,
     joinedAt: Date,
+    // Economy
+    wallet: {
+      type: Number,
+      default: 0,
+    },
+    bank: {
+      type: Number,
+      default: 0,
+    },
     // XP & Activity
     totalXp: {
       type: Number,
