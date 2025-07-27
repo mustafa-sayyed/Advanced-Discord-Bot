@@ -1,31 +1,49 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Collection } = require("discord.js");
 const Database = require("../../utils/database");
 
+// Cooldown collection specifically for this command
+const workCooldowns = new Collection();
+
 module.exports = {
-  // Set a 1-hour cooldown (3600 seconds)
-  cooldown: 3600,
   data: new SlashCommandBuilder()
     .setName("work")
     .setDescription("💪 Work to earn some coins."),
   async execute(interaction) {
     const db = await Database.getInstance();
-    const profile = await db.getUserProfile(
-      interaction.user.id,
-      interaction.guild.id
-    );
+    const economySettings = await db.getGuildEconomy(interaction.guild.id);
+    
+    const userId = interaction.user.id;
+    const guildId = interaction.guild.id;
+    
+    // Dynamic Cooldown Logic
+    const cooldownKey = `${guildId}-${userId}`;
+    const cooldownTime = economySettings.workCooldown * 1000; // in milliseconds
+    
+    if (workCooldowns.has(cooldownKey)) {
+        const expirationTime = workCooldowns.get(cooldownKey);
+        if (Date.now() < expirationTime) {
+            const expiredTimestamp = Math.round(expirationTime / 1000);
+            return await interaction.reply({
+                content: `You need to rest! You can work again <t:${expiredTimestamp}:R>.`,
+                ephemeral: true,
+            });
+        }
+    }
 
-    const amountEarned = 100;
+    const profile = await db.getUserProfile(userId, guildId);
+    const amountEarned = economySettings.workAmount;
 
-    // Update the user's wallet
+    // Update wallet and set new cooldown
     profile.wallet += amountEarned;
     await profile.save();
+    
+    workCooldowns.set(cooldownKey, Date.now() + cooldownTime);
+    setTimeout(() => workCooldowns.delete(cooldownKey), cooldownTime); // Remove after cooldown expires
 
     const workEmbed = new EmbedBuilder()
-      .setColor("#2ECC71") // Green color for success
+      .setColor("#2ECC71")
       .setTitle("Hard Work Pays Off!")
-      .setDescription(
-        `You worked hard and earned **${amountEarned.toLocaleString()}** coins!`
-      )
+      .setDescription(`You worked hard and earned **${amountEarned.toLocaleString()}** coins!`)
       .addFields({
         name: "New Wallet Balance",
         value: `**${profile.wallet.toLocaleString()}** coins`,
