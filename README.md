@@ -58,6 +58,16 @@
 
 </div>
 
+# 👑 MAINTAINERS
+
+| Role           | Name            | LinkedIn                                                                                                                                       | GitHub                         | Discord ID   |
+|----------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------|
+| 🛠️ Project Admin | Harshendra M     | [Harshendra M](https://www.linkedin.com/in/harshendra-m-2b8bb5299/)                                                                            | [@harshendram](https://github.com/harshendram) | guest0288    |
+| 🧠 Mentor 1     | Yash Vishnoi     | [Yash Vishnoi](https://www.linkedin.com/in/yash-vishnoi-22456a291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app) | [@yashjscoder](https://github.com/yashjscoder) | yash8238     |
+| 🧠 Mentor 2     | _Needs to be assigned_ | -                                                                                                                                              | -                              | -            |
+
+---
+
 ## 🖼️ Screenshots
 
 ### 🎨 Full Feature Showcase (Professional Grid)
