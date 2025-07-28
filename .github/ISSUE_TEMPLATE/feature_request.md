@@ -1,11 +1,9 @@
 ---
-
 name: ✨ Feature Request
 about: Suggest an enhancement or a new idea for the project
-title: '[FEATURE] <describe feature>'
-labels: 'enhancement', 'idea'
-assignees: ''
-
+title: "[FEATURE] <describe feature>"
+labels: enhancement, idea
+assignees: ""
 ---
 
 ## ✨ Is your feature request related to a problem?
