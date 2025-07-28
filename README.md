@@ -68,6 +68,54 @@
 
 ---
 
+## 📊 **GSSoC Contribution Tracker** 
+
+<div align="center">
+
+### 🎯 **MANDATORY for All Contributors**
+
+> **All contributors MUST update the contribution tracker for every issue and PR**
+
+<table>
+<tr>
+<td align="center" width="50%">
+<h3>🔗 <a href="https://docs.google.com/spreadsheets/d/1v-5TxMQUkxz7leIyV9wf1DeFKvL59ZAx1n3QZqw7-g8/edit?usp=sharing">Access Contribution Tracker</a></h3>
+<p><i>Click above to update your contributions</i></p>
+</td>
+<td align="center" width="50%">
+<h3>⚠️ Important Guidelines</h3>
+<p><i>Read carefully before updating</i></p>
+</td>
+</tr>
+</table>
+
+</div>
+
+### 📋 **Tracker Guidelines**
+
+| ✅ **DO** | ❌ **DON'T** |
+|-----------|--------------|
+| Update only your own entries | Modify other contributors' data |
+| Provide accurate information | Submit fake or misleading data |
+| Include issue/PR numbers | Leave fields blank |
+| Update within 24 hours | Ignore the tracker requirement |
+
+### 🛡️ **Violation Consequences**
+
+> **We maintain backup copies and monitor all changes**
+
+**Violations include:**
+- 🚫 Fake data submission
+- 🚫 Tampering with others' entries  
+- 🚫 Ignoring tracker requirements
+
+**Consequences:**
+- ⛔ **Immediate ban** from repository
+- ⛔ **Report to GSSoC** organizers
+- ⛔ **Block from future** open source programs
+
+---
+
 ### 🙌 **Thank You, Contributors!**
 
 > Thank you once again to all our contributors! Your efforts are truly appreciated. 💖👏
