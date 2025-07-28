@@ -10,6 +10,7 @@ const {
   TruthOrDareConfig,
   AntiRaid,
   GuildEconomy,
+  ShopItem,
 } = require("../models/schemas");
 
 class Database {
@@ -30,6 +31,7 @@ class Database {
     this.AntiRaid = AntiRaid;
     this.GuildConfig = ServerConfig; // Alias for ServerConfig
     this.GuildEconomy = GuildEconomy;
+    this.ShopItem = ShopItem;
   }
 
   static async getInstance() {
