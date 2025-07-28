@@ -103,6 +103,11 @@ const userProfileSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    inventory: [
+      {
+        type: String, // This will store the roleId of purchased items
+      },
+    ],
     // XP & Activity
     totalXp: {
       type: Number,
@@ -496,6 +501,28 @@ const guildEconomySchema = new mongoose.Schema({
   },
 });
 
+
+// 🛍️ Shop Item Schema
+const shopItemSchema = new mongoose.Schema({
+  guildId: {
+    type: String,
+    required: true,
+  },
+  roleId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+});
+
 // Create compound indexes for better query performance
 userProfileSchema.index({ userId: 1, guildId: 1 }, { unique: true });
 userProfileSchema.index({ guildId: 1, totalXp: -1 });
@@ -505,6 +532,7 @@ aiRateLimitSchema.index({ userId: 1, guildId: 1 }, { unique: true });
 xpTransactionSchema.index({ userId: 1, guildId: 1, createdAt: -1 });
 birthdaySchema.index({ userId: 1, guildId: 1 }, { unique: true });
 birthdaySchema.index({ guildId: 1, birthdayDate: 1 });
+shopItemSchema.index({ guildId: 1, name: 1 }, { unique: true });
 // Note: serverConfig, leaderboard, truthOrDareConfig, and antiRaid schemas
 // already have unique: true on guildId, so no additional index needed
 
@@ -517,6 +545,7 @@ module.exports = {
   Leaderboard: mongoose.model("Leaderboard", leaderboardSchema),
   Birthday: mongoose.model("Birthday", birthdaySchema),
   GuildEconomy: mongoose.model('GuildEconomy', guildEconomySchema),
+  ShopItem: mongoose.model('ShopItem', shopItemSchema),
   TruthOrDareConfig: mongoose.model(
     "TruthOrDareConfig",
     truthOrDareConfigSchema
