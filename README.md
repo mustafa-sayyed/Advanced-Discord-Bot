@@ -68,6 +68,18 @@
 
 ---
 
+### 🙌 **Thank You, Contributors!**
+
+> Thank you once again to all our contributors! Your efforts are truly appreciated. 💖👏
+
+<p align="center">
+  <a href="https://github.com/harshendram/Advanced-Discord-Bot/graphs/contributors">
+    <img src="https://api.vaunt.dev/v1/github/entities/harshendram/repositories/Advanced-Discord-Bot/contributors?format=svg&limit=54" width="700" height="250" />
+  </a>
+</p>
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
 ## 🖼️ Screenshots
 
 ### 🎨 Full Feature Showcase (Professional Grid)
