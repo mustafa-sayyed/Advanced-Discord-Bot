@@ -108,6 +108,11 @@ const userProfileSchema = new mongoose.Schema(
         type: String, // This will store the roleId of purchased items
       },
     ],
+    collectCooldowns: {
+      type: Map,
+      of: Date,
+      default: {},
+    },
     // XP & Activity
     totalXp: {
       type: Number,
@@ -491,10 +496,8 @@ const guildEconomySchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  workAmount: {
-    type: Number,
-    default: 100, // Default amount a user gets from /work
-  },
+  minWorkAmount: { type: Number, default: 50 }, // New: Minimum work amount
+  maxWorkAmount: { type: Number, default: 250 }, // New: Maximum work amount
   workCooldown: {
     type: Number,
     default: 3600, // Default cooldown in seconds (1 hour)
@@ -520,6 +523,19 @@ const shopItemSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+  },
+  itemType: {
+    type: String,
+    enum: ['cosmetic', 'income'],
+    required: true,
+  },
+  incomeAmount: {
+    type: Number,
+    default: 0,
+  },
+  incomeCooldown: {
+    type: Number, // Cooldown in seconds
+    default: 0,
   },
 });
 

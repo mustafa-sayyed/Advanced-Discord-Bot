@@ -37,7 +37,7 @@ module.exports = {
     if (subcommand !== "ask") {
       return await interaction.reply({
         content: "❌ Invalid subcommand. Use `/aiassistant ask <question>`",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
 
@@ -68,7 +68,7 @@ module.exports = {
 
         return await interaction.reply({
           embeds: [rateLimitEmbed],
-          ephemeral: true,
+          flags: [MessageFlags.Ephemeral],
         });
       }
     } catch (error) {
