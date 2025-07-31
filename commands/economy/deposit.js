@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require("discord.js");
 const Database = require("../../utils/database");
 
 module.exports = {
@@ -33,14 +33,14 @@ module.exports = {
     if (isNaN(amountToDeposit) || amountToDeposit <= 0) {
       return await interaction.reply({
         content: "❌ Please provide a valid, positive number for the amount.",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
 
     if (profile.wallet < amountToDeposit) {
       return await interaction.reply({
         content: "❌ You don't have enough coins in your wallet to deposit that much.",
-        ephemeral: true,
+        flags: [MessageFlags.Ephemeral],
       });
     }
 
