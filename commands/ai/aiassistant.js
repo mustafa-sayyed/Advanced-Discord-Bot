@@ -4,6 +4,7 @@ const {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  MessageFlags,
 } = require("discord.js");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const Database = require("../../utils/database");
