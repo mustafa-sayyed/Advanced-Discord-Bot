@@ -35,10 +35,6 @@ const images = [
     id: "RemainderSetter",
     src: "/assets/RemainderSetter.png",
   },
-  {
-    id: "VaishFinalImg",
-    src: "/assets/vaishfinalimg.jpg",
-  },
 ];
 
 export default images;
