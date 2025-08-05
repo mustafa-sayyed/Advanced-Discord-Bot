@@ -1,5 +1,5 @@
 const { Events, EmbedBuilder } = require("discord.js");
-const Database = require("../utils/database");
+const Database = require("@adb/server/utils/database");
 
 module.exports = {
   name: Events.InteractionCreate,
@@ -101,7 +101,7 @@ async function handleTicketButtons(interaction, client) {
 
 // 🙋 Handle ticket claim
 async function handleTicketClaim(interaction, client, db, ticketId) {
-  const { isModeratorOrOwner } = require("../utils/moderation");
+  const { isModeratorOrOwner } = require("@adb/server/utils/moderation");
 
   if (!isModeratorOrOwner(interaction.member, interaction.guild)) {
     const noPermEmbed = new EmbedBuilder()
@@ -132,7 +132,7 @@ async function handleTicketClaim(interaction, client, db, ticketId) {
 
 // 🔒 Handle ticket close
 async function handleTicketClose(interaction, client, db, ticketId) {
-  const { isModeratorOrOwner } = require("../utils/moderation");
+  const { isModeratorOrOwner } = require("@adb/server/utils/moderation");
 
   if (!isModeratorOrOwner(interaction.member, interaction.guild)) {
     const noPermEmbed = new EmbedBuilder()
@@ -173,7 +173,7 @@ async function handleTicketClose(interaction, client, db, ticketId) {
 
 // 📊 Handle ticket priority change
 async function handleTicketPriority(interaction, client, db, ticketId) {
-  const { isModeratorOrOwner } = require("../utils/moderation");
+  const { isModeratorOrOwner } = require("@adb/server/utils/moderation");
 
   if (!isModeratorOrOwner(interaction.member, interaction.guild)) {
     const noPermEmbed = new EmbedBuilder()

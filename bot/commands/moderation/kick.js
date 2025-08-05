@@ -3,7 +3,7 @@ const {
   EmbedBuilder,
   PermissionFlagsBits,
 } = require("discord.js");
-const { isModeratorOrOwner } = require("../../utils/moderation");
+const { isModeratorOrOwner } = require("@adb/server/utils/moderation");
 
 module.exports = {
   data: new SlashCommandBuilder()

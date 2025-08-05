@@ -13,7 +13,7 @@ const {
   getPriorityColor,
   formatTicketStatus,
   timeAgo,
-} = require("../../utils/moderation");
+} = require("@adb/server/utils/moderation");
 
 module.exports = {
   data: new SlashCommandBuilder()

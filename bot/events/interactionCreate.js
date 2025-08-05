@@ -383,13 +383,12 @@ async function handleFeedbackSubmission(interaction, client) {
 // 🤖 AI Context modal handler
 async function handleAIContextModal(interaction, client) {
   const { EmbedBuilder } = require("discord.js");
-  const Database = require("../utils/database");
+  const Database = require("@adb/server/utils/database");
 
   const context = interaction.fields.getTextInputValue("ai_context_input");
 
   try {
-    const db = Database; // Use the exported instance
-await db.ensureConnection(); // Ensure connection is established
+    const db = await Database.getInstance();
     await db.updateServerConfig(interaction.guild.id, {
       ai_context: context,
     });
@@ -465,7 +464,7 @@ async function showContextModal(interaction, client) {
 // 🎮 Handle Truth or Dare button interactions
 async function handleTruthOrDareButton(interaction, client) {
   const { EmbedBuilder, MessageFlags } = require("discord.js");
-  const Database = require("../utils/database");
+  const Database = require("@adb/server/utils/database");
   const {
     getRandomTruthOrDare,
   } = require("../commands/truth-or-dare/truthordare");
@@ -510,7 +509,7 @@ async function handleTruthOrDareButton(interaction, client) {
 
   if (action === "stats") {
     try {
-      const db = Database.getInstance();
+      const db = await Database.getInstance();
       const config = await db.TruthOrDareConfig.findOne({
         guildId: interaction.guild.id,
       });
@@ -590,7 +589,7 @@ async function handleTruthOrDareButton(interaction, client) {
   }
 
   try {
-    const db = Database.getInstance();
+    const db = await Database.getInstance();
 
     // Check cooldown
     const config = await db.TruthOrDareConfig.findOne({
@@ -814,13 +813,12 @@ async function handleAIAskModal(interaction, client) {
     ButtonBuilder,
     ButtonStyle,
   } = require("discord.js");
-  const Database = require("../utils/database");
+  const Database = require("@adb/server/utils/database");
 
   const question = interaction.fields.getTextInputValue("ai_question_input");
 
   // Check rate limiting (5 requests per hour - same as slash command)
-  const db = Database; // Use the exported instance
-await db.ensureConnection(); // Ensure connection is established
+  const db = await Database.getInstance();
   const rateLimit = await db.checkRateLimit(
     interaction.user.id,
     interaction.guild.id,
@@ -1077,11 +1075,10 @@ async function handleReminderButtons(interaction, client) {
 
 // 🎫 Handle ticket system button interactions
 async function handleTicketButtons(interaction, client) {
-  const Database = require("../utils/database");
-  const { isModeratorOrOwner } = require("../utils/moderation");
+  const Database = require("@adb/server/utils/database");
+  const { isModeratorOrOwner } = require("@adb/server/utils/moderation");
 
-  const db = Database; // Use the exported instance
-await db.ensureConnection(); // Ensure connection is established
+  const db = await Database.getInstance();
   const customId = interaction.customId;
 
   try {
@@ -1220,9 +1217,8 @@ await db.ensureConnection(); // Ensure connection is established
 
 // 🔒 Handle close ticket modal submission
 async function handleCloseTicketModal(interaction, client) {
-  const Database = require("../utils/database");
-  const db = Database; // Use the exported instance
-await db.ensureConnection(); // Ensure connection is established
+  const Database = require("@adb/server/utils/database");
+  const db = await Database.getInstance();
 
   const ticketId = interaction.customId.split("_")[3];
   const closeReason =

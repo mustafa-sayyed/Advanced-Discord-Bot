@@ -9,6 +9,7 @@
   "dependencies": {
     "@adb/server": "1.0.0",
     "@discordjs/rest": "^2.2.0",
+    "@google/generative-ai": "^0.24.1",
     "axios": "^1.6.8",
     "discord-api-types": "^0.37.71",
     "discord.js": "^14.14.1",

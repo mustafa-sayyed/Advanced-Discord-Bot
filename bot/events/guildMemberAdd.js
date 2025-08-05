@@ -1,5 +1,5 @@
 const { Events, EmbedBuilder, AttachmentBuilder } = require("discord.js");
-const Database = require("../utils/database");
+const Database = require("@adb/server/utils/database");
 const { checkRaidDetection } = require("../commands/antimodules/antiraid");
 
 module.exports = {

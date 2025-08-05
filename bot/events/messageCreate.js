@@ -5,7 +5,7 @@ const {
   sanitizeInput,
   isQuestion,
   parseChannelList,
-} = require("../utils/moderation");
+} = require("@adb/server/utils/moderation");
 
 // 🤖 Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
