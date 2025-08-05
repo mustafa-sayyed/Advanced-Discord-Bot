@@ -74,7 +74,21 @@ cd advanced-discord-bot
 # Install dependencies
 npm install
 
-# Copy environment file
+# Do the same with server, website, and bot folders
+cd server
+npm install
+
+cd ../bot
+npm install
+
+cd ../website
+npm install
+
+# Return to the root directory
+cd ..
+
+# Copy environment file (inside the bot folder)
+cd bot
 cp .env.example .env
 
 # Edit .env with your credentials
@@ -83,11 +97,11 @@ cp .env.example .env
 # MONGODB_URI=your_mongodb_uri
 # GEMINI_API_KEY=your_gemini_key
 
-# Deploy commands for testing
-node deploy-commands.js
+# Deploy the commands
+npm run deploy
 
 # Start the bot
-npm run dev
+npm run start:bot
 ```
 
 ### 2. Development Workflow
@@ -163,18 +177,45 @@ git push origin feature/amazing-new-feature
 **File Structure:**
 
 ```
-commands/
-├── category/
-│   └── command-name.js       # Kebab-case naming
-events/
-├── eventName.js              # CamelCase for events
-utils/
-├── helpers.js                # Utility functions
-models/
-├── schemas.js                # Database schemas
+advanced-discord-bot/
+├── bot/                -----   discord bot related logic and code
+│   ├── commands/
+│   ├── events/
+│   ├── .env
+│   ├── .env.example
+│   ├── deploy-commands.js
+│   ├── index.js
+│   ├── package.json
+│   ├── setup.bat
+│   └── node_modules/
+├── screenshots/        -----   showcase the bot
+├── server/             -----   server backend and db logic
+│   ├── models/
+│   ├── utils/
+│   ├── index.js
+│   └── package.json
+├── website/            -----   website code
+│   ├── node_modules/
+│   ├── public/
+│   ├── src/
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── VAISH video.mp4
+│   └── vite.config.js
+├── .distignore
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── DOCUMENTATION.md
+├── LICENSE
+├── package.json
+├── README.md
+└── release.zip
 ```
 
-````
+
 
 
 **Emoji Usage:**
@@ -263,7 +304,8 @@ Mockups, examples, or references
 
 ```bash
 # Test in development server
-npm run dev
+npm run deploy
+npm run start:bot
 
 # Test all affected commands
 # Verify error handling
