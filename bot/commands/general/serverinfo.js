@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { generateProgressBar } = require("../../utils/helpers");
+const { generateProgressBar } = require("@adb/server/utils/helpers");
 
 module.exports = {
   data: new SlashCommandBuilder()

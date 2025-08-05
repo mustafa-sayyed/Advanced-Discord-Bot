@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -34,7 +34,8 @@ module.exports = {
     // Edit command can be expanded later if needed
 
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const subcommand = interaction.options.getSubcommand();
     const group = interaction.options.getSubcommandGroup();
 

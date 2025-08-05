@@ -3,7 +3,7 @@ const {
   formatUptime,
   formatBytes,
   generateProgressBar,
-} = require("../../utils/helpers");
+} = require("@adb/server/utils/helpers");
 
 module.exports = {
   data: new SlashCommandBuilder()

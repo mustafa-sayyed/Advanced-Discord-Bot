@@ -1,12 +1,13 @@
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("shop")
     .setDescription("🛍️ Displays the available roles for purchase."),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const items = await db.ShopItem.find({ guildId: interaction.guild.id }).sort({ price: 1 });
 
     if (items.length === 0) {

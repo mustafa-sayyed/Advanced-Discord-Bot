@@ -4,7 +4,7 @@ const {
   PermissionFlagsBits,
   ChannelType,
 } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -138,7 +138,8 @@ module.exports = {
         )
     ),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
 
     try {
       const subcommand = interaction.options.getSubcommand();

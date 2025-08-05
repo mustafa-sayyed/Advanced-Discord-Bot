@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -25,7 +25,8 @@ module.exports = {
         .setMinValue(1)
     ),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const economySettings = await db.getGuildEconomy(interaction.guild.id);
 
     const minWorkAmount = interaction.options.getInteger("min-work-amount");

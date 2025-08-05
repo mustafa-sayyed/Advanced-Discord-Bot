@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,7 +15,8 @@ module.exports = {
         .setRequired(true)
         .setMinValue(1)),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const sender = interaction.user;
     const recipient = interaction.options.getUser("recipient");
     const amount = interaction.options.getInteger("amount");

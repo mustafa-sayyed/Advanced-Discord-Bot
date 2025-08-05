@@ -10,6 +10,8 @@ const {
   StringSelectMenuBuilder,
 } = require("discord.js");
 
+const { database: Database } = require("@adb/server");
+
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction, client) {
@@ -386,7 +388,8 @@ async function handleAIContextModal(interaction, client) {
   const context = interaction.fields.getTextInputValue("ai_context_input");
 
   try {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     await db.updateServerConfig(interaction.guild.id, {
       ai_context: context,
     });
@@ -816,7 +819,8 @@ async function handleAIAskModal(interaction, client) {
   const question = interaction.fields.getTextInputValue("ai_question_input");
 
   // Check rate limiting (5 requests per hour - same as slash command)
-  const db = await Database.getInstance();
+  const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
   const rateLimit = await db.checkRateLimit(
     interaction.user.id,
     interaction.guild.id,
@@ -1076,7 +1080,8 @@ async function handleTicketButtons(interaction, client) {
   const Database = require("../utils/database");
   const { isModeratorOrOwner } = require("../utils/moderation");
 
-  const db = await Database.getInstance();
+  const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
   const customId = interaction.customId;
 
   try {
@@ -1216,7 +1221,8 @@ async function handleTicketButtons(interaction, client) {
 // 🔒 Handle close ticket modal submission
 async function handleCloseTicketModal(interaction, client) {
   const Database = require("../utils/database");
-  const db = await Database.getInstance();
+  const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
 
   const ticketId = interaction.customId.split("_")[3];
   const closeReason =

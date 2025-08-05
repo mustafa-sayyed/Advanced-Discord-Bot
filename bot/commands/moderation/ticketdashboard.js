@@ -7,7 +7,7 @@ const {
   StringSelectMenuBuilder,
   PermissionFlagsBits,
 } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 const {
   isModeratorOrOwner,
   getPriorityColor,
@@ -75,7 +75,8 @@ module.exports = {
     }
 
     const subcommand = interaction.options.getSubcommand();
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
 
     try {
       switch (subcommand) {

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -10,7 +10,8 @@ module.exports = {
         .setDescription("The name of the role you want to buy.")
         .setRequired(true)),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const itemName = interaction.options.getString("item");
 
     const item = await db.ShopItem.findOne({ guildId: interaction.guild.id, name: itemName });

@@ -10,7 +10,7 @@ const {
   ChannelType,
   PermissionFlagsBits,
 } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 const {
   isModeratorOrOwner,
   generateTicketId,
@@ -65,7 +65,8 @@ module.exports = {
 
     await interaction.deferReply({ flags: 64 });
 
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
 
     try {
       // 🏰 Get server configuration for ticket category

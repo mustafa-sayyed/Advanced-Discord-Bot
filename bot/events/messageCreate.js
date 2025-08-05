@@ -1,6 +1,6 @@
 const { Events, EmbedBuilder, InteractionType } = require("discord.js");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const Database = require("../utils/database");
+const { database: Database } = require("@adb/server");
 const {
   sanitizeInput,
   isQuestion,
@@ -17,7 +17,8 @@ module.exports = {
     // 🚫 Ignore bot messages and DMs
     if (message.author.bot || !message.guild) return;
 
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
 
     try {
       // 🎯 XP TRACKING LOGIC FIRST

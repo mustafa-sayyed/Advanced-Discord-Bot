@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, Collection, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 // Cooldown collection specifically for this command
 const workCooldowns = new Collection();
@@ -41,7 +41,8 @@ module.exports = {
     .setName("work")
     .setDescription("💪 Work to earn some coins."),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const economySettings = await db.getGuildEconomy(interaction.guild.id);
     
     const userId = interaction.user.id;

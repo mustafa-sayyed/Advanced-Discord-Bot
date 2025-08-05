@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { getRandomResponse } = require("../../utils/helpers");
+const { getRandomResponse } = require("@adb/server/utils/helpers");
 
 module.exports = {
   data: new SlashCommandBuilder()

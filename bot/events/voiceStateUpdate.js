@@ -1,10 +1,11 @@
 const { Events } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   name: Events.VoiceStateUpdate,
   async execute(oldState, newState) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
 
     try {
       // Get server config

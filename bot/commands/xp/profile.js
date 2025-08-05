@@ -3,7 +3,7 @@ const {
   EmbedBuilder,
   AttachmentBuilder,
 } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -19,7 +19,8 @@ module.exports = {
   async execute(interaction) {
     await interaction.deferReply();
 
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     const targetUser = interaction.options.getUser("user") || interaction.user;
     const guildId = interaction.guild.id;
 

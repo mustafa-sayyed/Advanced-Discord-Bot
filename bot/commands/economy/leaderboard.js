@@ -1,12 +1,13 @@
 const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("leaderboard")
     .setDescription("🏆 Shows the top 10 richest users in the server."),
   async execute(interaction) {
-    const db = await Database.getInstance();
+    const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
     await interaction.deferReply();
 
     // Find all profiles in the current guild

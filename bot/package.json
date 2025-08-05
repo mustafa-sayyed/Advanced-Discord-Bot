@@ -1,54 +1,23 @@
 {
   "name": "@adb/bot",
-  "version": "2.0.0",
-  "description": "The core Discord bot application",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "deploy": "node deploy-commands.js",
-    "test": "node --test"
-  },
-  "keywords": [
-    "discord",
-    "bot",
-    "discord.js",
-    "ai",
-    "gemini",
-    "modern",
-    "VAISH",
-    "advanced",
-    "typescript-ready",
-    "mongodb",
-    "open-source"
-  ],
-  "author": "VAISH Development Team",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/VAISH-bot/discord-bot"
-  },
-  "homepage": "https://VAISH-bot.com",
-  "bugs": {
-    "url": "https://github.com/VAISH-bot/discord-bot/issues"
+    "deploy": "node deploy-commands.js"
   },
   "dependencies": {
     "@adb/server": "1.0.0",
     "@discordjs/rest": "^2.2.0",
-    "@google/generative-ai": "^0.7.1",
-    "axios": "^1.11.0",
+    "axios": "^1.6.8",
+    "discord-api-types": "^0.37.71",
     "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1",
-    "express": "^5.1.0",
-    "mongoose": "^8.0.3",
+    "dotenv": "^16.4.5",
+    "glob": "^10.3.10",
+    "mathjs": "^12.4.1",
+    "mongoose": "^8.2.4",
     "ms": "^2.1.3",
     "node-cron": "^3.0.3",
-    "node-fetch": "^2.7.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.2"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+    "openai": "^4.29.2"
   }
 }

@@ -1,8 +1,7 @@
 {
-  "name": "advanced-discord-bot-monorepo",
+  "name": "discord-bot-monorepo",
   "private": true,
   "version": "1.0.0",
-  "description": "Monorepo for the Advanced Discord Bot, its server utilities, and website.",
   "workspaces": [
     "bot",
     "server",
@@ -10,11 +9,7 @@
   ],
   "scripts": {
     "start:bot": "npm start --workspace=@adb/bot",
-    "deploy:commands": "npm run deploy --workspace=@adb/bot",
+    "deploy": "npm run deploy --workspace=@adb/bot",
     "dev:website": "npm run dev --workspace=@adb/website"
-  },
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5"
   }
 }

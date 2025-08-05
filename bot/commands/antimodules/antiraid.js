@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const Database = require("../../utils/database");
+const { database: Database } = require("@adb/server");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -37,7 +37,8 @@ module.exports = {
     const subcommand = interaction.options.getSubcommand();
 
     try {
-      const db = await Database.getInstance();
+      const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
       
       switch (subcommand) {
         case "enable":

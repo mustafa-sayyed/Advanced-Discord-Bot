@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-const Database = require("../../../utils/database");
+const { database: Database } = require("@adb/server");
 
 const defaultTruths = [
   "What's the most embarrassing thing that's ever happened to you?",
@@ -120,7 +120,8 @@ module.exports = {
     const subcommand = interaction.options.getSubcommand();
 
     try {
-      const db = await Database.getInstance();
+      const db = Database; // Use the exported instance
+await db.ensureConnection(); // Ensure connection is established
       switch (subcommand) {
         case "play":
           await handlePlay(interaction, db);

@@ -1,7 +1,9 @@
 // server/index.js
+const Database = require('./utils/database.js');
+
 module.exports = {
   // Utils
-  database: require('./utils/database.js'),
+  database: new Database(), // Export an instance
   scheduler: require('./utils/scheduler.js'),
   moderation: require('./utils/moderation.js'),
 
