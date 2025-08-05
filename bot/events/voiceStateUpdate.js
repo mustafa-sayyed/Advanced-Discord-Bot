@@ -1,5 +1,5 @@
 const { Events } = require("discord.js");
-const Database = require("../utils/database");
+const Database = require("../../utils/database");
 
 module.exports = {
   name: Events.VoiceStateUpdate,

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-const Database = require("../../utils/database");
+const Database = require("../../../utils/database");
 
 const defaultTruths = [
   "What's the most embarrassing thing that's ever happened to you?",

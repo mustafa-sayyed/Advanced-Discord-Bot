@@ -8,8 +8,8 @@ const {
 } = require("discord.js");
 const { readdirSync } = require("fs");
 const path = require("path");
-const Database = require("./utils/database");
-const TaskScheduler = require("./utils/scheduler");
+const Database = require("../utils/database");
+const TaskScheduler = require("../utils/scheduler");
 require("dotenv").config();
 
 // 🚀 Create VAISH - Ultra Modern Discord Bot

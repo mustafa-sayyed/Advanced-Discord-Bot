@@ -1,0 +1,10 @@
+{
+  "name": "@adb/server",
+  "version": "1.0.0",
+  "description": "Backend utilities, database models, and helpers for the Advanced Discord Bot",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "^8.2.4",
+    "node-cron": "^3.0.3"
+  }
+}
