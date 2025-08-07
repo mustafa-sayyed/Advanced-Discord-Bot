@@ -4,12 +4,10 @@
   "version": "1.0.0",
   "workspaces": [
     "bot",
-    "server",
-    "website"
+    "server"
   ],
   "scripts": {
-    "start:bot": "npm start --workspace=@adb/bot",
-    "deploy": "npm run deploy --workspace=@adb/bot",
-    "dev:website": "npm run dev --workspace=@adb/website"
+    "start": "npm start --workspace=@adb/bot",
+    "deploy": "npm run deploy --workspace=@adb/bot"
   }
 }
