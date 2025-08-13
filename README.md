@@ -60,15 +60,15 @@
 
 # 👑 MAINTAINERS
 
-| Role           | Name            | LinkedIn                                                                                                                                       | GitHub                         | Discord ID   |
-|----------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------|
-| 🛠️ Project Admin | Harshendra M     | [Harshendra M](https://www.linkedin.com/in/harshendra-m-2b8bb5299/)                                                                            | [@harshendram](https://github.com/harshendram) | guest0288    |
-| 🧠 Mentor 1     | Yash Vishnoi     | [Yash Vishnoi](https://www.linkedin.com/in/yash-vishnoi-22456a291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app) | [@yashjscoder](https://github.com/yashjscoder) | yash8238     |
-| 🧠 Mentor 2     | Ayesha Khan | [Ayesha Khan](https://www.linkedin.com/in/ayesha-khan-129434219/)                                                                                                                                         | [@fizaayesha](https://github.com/fizaayesha)                          | -           |
+| Role             | Name         | LinkedIn                                                                                                                                              | GitHub                                         | Discord ID |
+| ---------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ---------- |
+| 🛠️ Project Admin | Harshendra M | [Harshendra M](https://www.linkedin.com/in/harshendra-m-2b8bb5299/)                                                                                   | [@harshendram](https://github.com/harshendram) | guest0288  |
+| 🧠 Mentor 1      | Yash Vishnoi | [Yash Vishnoi](https://www.linkedin.com/in/yash-vishnoi-22456a291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app) | [@yashjscoder](https://github.com/yashjscoder) | yash8238   |
+| 🧠 Mentor 2      | Ayesha Khan  | [Ayesha Khan](https://www.linkedin.com/in/ayesha-khan-129434219/)                                                                                     | [@fizaayesha](https://github.com/fizaayesha)   | -          |
 
 ---
 
-## 📊 **GSSoC Contribution Tracker** 
+## 📊 **GSSoC Contribution Tracker**
 
 <div align="center">
 
@@ -93,23 +93,25 @@
 
 ### 📋 **Tracker Guidelines**
 
-| ✅ **DO** | ❌ **DON'T** |
-|-----------|--------------|
+| ✅ **DO**                    | ❌ **DON'T**                    |
+| ---------------------------- | ------------------------------- |
 | Update only your own entries | Modify other contributors' data |
-| Provide accurate information | Submit fake or misleading data |
-| Include issue/PR numbers | Leave fields blank |
-| Update within 24 hours | Ignore the tracker requirement |
+| Provide accurate information | Submit fake or misleading data  |
+| Include issue/PR numbers     | Leave fields blank              |
+| Update within 24 hours       | Ignore the tracker requirement  |
 
 ### 🛡️ **Violation Consequences**
 
 > **We maintain backup copies and monitor all changes**
 
 **Violations include:**
+
 - 🚫 Fake data submission
-- 🚫 Tampering with others' entries  
+- 🚫 Tampering with others' entries
 - 🚫 Ignoring tracker requirements
 
 **Consequences:**
+
 - ⛔ **Immediate ban** from repository
 - ⛔ **Report to GSSoC** organizers
 - ⛔ **Block from future** open source programs
@@ -290,6 +292,8 @@
 
 ### Installation
 
+## **Option 1: Local Setup (Without Docker)**
+
 1. **Clone the repository**
 
    ```bash
@@ -324,6 +328,49 @@
 5. **Start the bot**
    ```bash
    npm start
+   ```
+
+---
+
+## **Option 2: Docker Setup**
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/VAISH-discord-bot.git
+   cd VAISH-discord-bot
+   ```
+
+2. **Configure environment variables**
+
+   Create a `.env` file:
+
+   ```env
+   DISCORD_TOKEN=your_discord_bot_token_here
+   CLIENT_ID=your_bot_client_id_here
+   GUILD_ID=your_test_guild_id_here
+   MONGODB_URI=mongodb://advance:bot@mongo:27017/discord-bot?authSource=admin&retryWrites=true&w=majority
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+3. **(Optional) Deploy Slash Commands**
+
+   **Note:** Only run this if you’ve made changes to your slash commands or are setting them up for the first time.
+
+   ```bash
+   docker compose run --rm bot npm run deploy
+   ```
+
+4. **Build and Start the Containers**
+
+   ```bash
+   docker compose up --build -d
+   ```
+
+5. **View Bot Logs (Optional)**
+
+   ```bash
+   docker compose logs -f bot
    ```
 
 ---
@@ -561,7 +608,6 @@ _Built with ❤️ by the VAISH development team_
 _"Empowering Discord communities with free, powerful, and intelligent bot solutions"_
 
 </div>
-
 
 <p align="center">
   <a href="#top" style="font-size: 18px; padding: 8px 16px; display: inline-block; border: 1px solid #ccc; border-radius: 6px; text-decoration: none;">
