@@ -309,6 +309,8 @@
 
 3. **Configure environment variables**
 
+🎥 Need help with advance bot environment setup? Watch the [YouTube video guide](https://youtu.be/stB4NeX5J8c).
+
    Create a `.env` file:
 
    ```env
