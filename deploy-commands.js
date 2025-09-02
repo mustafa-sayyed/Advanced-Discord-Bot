@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { REST, Routes } = require("discord.js");
 const { readdirSync } = require("fs");
 const path = require("path");

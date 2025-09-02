@@ -61,6 +61,7 @@ class Database {
       process.exit(1);
     }
   }
+  
   async ensureConnection() {
     if (!this.isConnected && mongoose.connection.readyState !== 1) {
       await this.connect();

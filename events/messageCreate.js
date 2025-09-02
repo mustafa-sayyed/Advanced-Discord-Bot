@@ -1,15 +1,11 @@
 const { Events, EmbedBuilder, InteractionType } = require("discord.js");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenAI } = require("@google/genai");
 const Database = require("../utils/database");
-const {
-  sanitizeInput,
-  isQuestion,
-  parseChannelList,
-} = require("../utils/moderation");
+const { sanitizeInput, isQuestion, parseChannelList } = require("../utils/moderation");
 
 // 🤖 Initialize Gemini AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const history = [];
 
 module.exports = {
   name: Events.MessageCreate,
@@ -41,10 +37,7 @@ async function handleXPTracking(message, db, client) {
     if (!config.xpEnabled) return;
 
     // Check if channel is excluded
-    if (
-      config.excludeChannels &&
-      config.excludeChannels.includes(message.channel.id)
-    ) {
+    if (config.excludeChannels && config.excludeChannels.includes(message.channel.id)) {
       return;
     }
 
@@ -126,18 +119,14 @@ async function checkAndAssignRoles(member, db, guildId) {
 
     // Roles to add
     const rolesToAdd = eligibleRoleIds.filter(
-      (roleId) =>
-        !currentRoleIds.includes(roleId) && member.guild.roles.cache.has(roleId)
+      (roleId) => !currentRoleIds.includes(roleId) && member.guild.roles.cache.has(roleId)
     );
 
     // Add new roles
     for (const roleId of rolesToAdd) {
       try {
         const role = member.guild.roles.cache.get(roleId);
-        if (
-          role &&
-          role.position < member.guild.members.me.roles.highest.position
-        ) {
+        if (role && role.position < member.guild.members.me.roles.highest.position) {
           await member.roles.add(role);
           console.log(`✅ Added role ${role.name} to ${member.user.username}`);
         }
@@ -177,6 +166,11 @@ async function handleAIAssistant(message, db, client) {
     const listeningChannels = config.aiChannels || [];
 
     if (!listeningChannels.includes(message.channel.id)) {
+      console.log(
+        `Is your channel: ${
+          message.channel.name
+        } exist in the AI Channel list: ${listeningChannels.includes(message.channel.id)}`
+      );
       return;
     }
 
@@ -189,7 +183,7 @@ async function handleAIAssistant(message, db, client) {
     const rateLimit = await db.checkRateLimit(
       message.author.id,
       message.guild.id,
-      3,
+      5,
       600000
     ); // 3 requests per 10 minutes
 
@@ -198,10 +192,10 @@ async function handleAIAssistant(message, db, client) {
     }
 
     // 🧠 Generate AI response
-    let context = `You are an AI assistant for the Discord server "${message.guild.name}". `;
+    let systemPrompt = `You are an AI assistant named Vaish in the Discord " ${message.guild.name} ". `;
 
     if (config.aiContext) {
-      context += `Here's important information about this server: ${config.aiContext} `;
+      systemPrompt += `\n Here's important information about this server: ${config.aiContext} `;
     }
 
     // 📜 Get recent channel context (last 5 messages)
@@ -214,18 +208,35 @@ async function handleAIAssistant(message, db, client) {
       .map((msg) => `${msg.author.username}: ${sanitizeInput(msg.content)}`)
       .join("\n");
 
-    context += `\n\nRecent conversation context:\n${channelContext}\n\n`;
-    context += `Please answer the user's question based on the information provided and recent context. If you don't have enough information, suggest they contact a moderator. Keep responses concise, helpful, and natural. You can reference the conversation context if relevant.`;
+    systemPrompt += `\n\nRecent conversation context:\n${channelContext}\n\n`;
+    systemPrompt += `Please answer the user's question based on the information provided and recent context. If you don't have enough information, suggest they contact a moderator. Keep responses concise, helpful, and natural. You can reference the conversation context if relevant.`;
 
-    const prompt = `${context}\n\nUser Question from ${
-      message.author.username
-    }: ${sanitizeInput(message.content)}`;
+    history.push({
+      role: "user",
+      parts: [
+        {
+          text: `Question from ${message.author.username}: ${sanitizeInput(
+            message.content
+          )} `,
+        },
+      ],
+    });
 
     // 💭 Show typing indicator
     await message.channel.sendTyping();
 
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: history,
+      config: {
+        systemInstruction: systemPrompt,
+      },
+    });
+
+    history.push({
+      role: "model",
+      parts: [{ text: response.text }],
+    });
 
     // 📤 Send AI response
     const aiEmbed = new EmbedBuilder()
@@ -234,14 +245,14 @@ async function handleAIAssistant(message, db, client) {
         name: "AI Assistant",
         iconURL: client.user.displayAvatarURL(),
       })
-      .setDescription(response.substring(0, 2000))
+      .setDescription(response.text.substring(0, 2000))
       .setFooter({
         text: `Responding to ${message.author.username} • Powered by Gemini AI`,
         iconURL: message.author.displayAvatarURL(),
       })
       .setTimestamp();
 
-    if (response.length > 2000) {
+    if (response.text.length > 2000) {
       aiEmbed.addFields({
         name: "📄 Response Truncated",
         value: "Response was shortened for readability.",
@@ -252,7 +263,7 @@ async function handleAIAssistant(message, db, client) {
     await message.reply({ embeds: [aiEmbed] });
 
     console.log(
-      `🤖 AI responded to ${message.author.tag} in ${message.guild.name}#${message.channel.name}`
+      `🤖 AI responded to ${message.author.tag} in ${message.guild.name} #${message.channel.name}`
     );
   } catch (error) {
     console.error("❌ AI auto-response error:", error);

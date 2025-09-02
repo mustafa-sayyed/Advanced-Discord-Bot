@@ -33,7 +33,7 @@
     "url": "https://github.com/VAISH-bot/discord-bot/issues"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.7.1",
+    "@google/genai": "^1.16.0",
     "axios": "^1.6.2",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",

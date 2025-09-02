@@ -74,7 +74,7 @@ client.profile = {
     "⚡ Lightning-fast Performance",
   ],
   stats: {
-    commands: 27,
+    commands: 46,
     categories: 10,
     uptime: 0,
     servers: 0,
