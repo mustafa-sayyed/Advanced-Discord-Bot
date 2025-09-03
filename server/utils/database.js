@@ -34,7 +34,7 @@ class Database {
     this.ShopItem = ShopItem;
   }
 
-  static async getInstance() {
+  async getInstance() {
     if (!Database.instance) {
       Database.instance = new Database();
       await Database.instance.connect();
@@ -61,6 +61,7 @@ class Database {
       process.exit(1);
     }
   }
+  
   async ensureConnection() {
     if (!this.isConnected && mongoose.connection.readyState !== 1) {
       await this.connect();

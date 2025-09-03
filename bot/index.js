@@ -8,7 +8,7 @@ const {
 } = require("discord.js");
 const { readdirSync } = require("fs");
 const path = require("path");
-const Database = require("@adb/server/utils/database");
+const { database: Database } = require("@adb/server/");
 const { scheduler: TaskScheduler } = require("@adb/server");
 require("dotenv").config();
 
@@ -74,7 +74,7 @@ client.profile = {
     "⚡ Lightning-fast Performance",
   ],
   stats: {
-    commands: 27,
+    commands: 46,
     categories: 10,
     uptime: 0,
     servers: 0,
@@ -153,8 +153,7 @@ function loadEvents() {
   const eventsPath = path.join(__dirname, "events");
   const eventFiles = readdirSync(eventsPath).filter(
     (file) =>
-      file.endsWith(".js") &&
-      !["helpInteraction.js", "modalCreate.js"].includes(file)
+      file.endsWith(".js") && !["helpInteraction.js", "modalCreate.js"].includes(file)
   );
 
   for (const file of eventFiles) {
@@ -208,10 +207,7 @@ client.once("ready", async () => {
 
   // Update bot stats
   client.profile.stats.servers = client.guilds.cache.size;
-  client.profile.stats.users = client.guilds.cache.reduce(
-    (a, g) => a + g.memberCount,
-    0
-  );
+  client.profile.stats.users = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
 
   // Set initial status
   updateBotActivity();
@@ -291,7 +287,6 @@ async function startVAISH() {
   }
 }
 
-
 // <<<<<<< HEAD
 // =======
 
@@ -310,4 +305,3 @@ async function startVAISH() {
 // });
 // 🎬 Start the show!
 startVAISH();
-

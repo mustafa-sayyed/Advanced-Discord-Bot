@@ -11,7 +11,7 @@ module.exports = {
     const apiPing = client.ws.ping;
 
     const start = performance.now();
-    await interaction.reply({ content: '🏓 Pinging...', fetchReply: true });
+    await interaction.reply({ content: '🏓 Pinging...', withResponse: true });
     const botPing = Math.round(performance.now() - start);
 
     await interaction.editReply(`🏓 **API Latency**: ${apiPing}ms\n🤖 **Bot Latency**: ${botPing}ms`);

@@ -20,9 +20,7 @@ module.exports = {
       const command = interaction.client.commands.get(interaction.commandName);
 
       if (!command) {
-        console.error(
-          `❌ No command matching ${interaction.commandName} was found.`
-        );
+        console.error(`❌ No command matching ${interaction.commandName} was found.`);
         return;
       }
 
@@ -36,12 +34,10 @@ module.exports = {
       const now = Date.now();
       const timestamps = cooldowns.get(command.data.name);
       const defaultCooldownDuration = 3;
-      const cooldownAmount =
-        (command.cooldown ?? defaultCooldownDuration) * 1000;
+      const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 
       if (timestamps.has(interaction.user.id)) {
-        const expirationTime =
-          timestamps.get(interaction.user.id) + cooldownAmount;
+        const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
 
         if (now < expirationTime) {
           const expiredTimestamp = Math.round(expirationTime / 1000);
@@ -310,9 +306,7 @@ async function handleFeedbackSubmission(interaction, client) {
 
   const feedbackType = interaction.fields.getTextInputValue("feedback_type");
   const title = interaction.fields.getTextInputValue("feedback_title");
-  const description = interaction.fields.getTextInputValue(
-    "feedback_description"
-  );
+  const description = interaction.fields.getTextInputValue("feedback_description");
   const contact =
     interaction.fields.getTextInputValue("feedback_contact") || "Not provided";
 
@@ -364,9 +358,7 @@ async function handleFeedbackSubmission(interaction, client) {
   const confirmEmbed = new EmbedBuilder()
     .setColor(client.colors.success)
     .setTitle("✅ Feedback Submitted!")
-    .setDescription(
-      "Thank you for your feedback! Our team will review it soon."
-    )
+    .setDescription("Thank you for your feedback! Our team will review it soon.")
     .addFields({
       name: "📋 Your Submission",
       value: `**Type:** ${feedbackType}\n**Title:** ${title}`,
@@ -396,9 +388,7 @@ async function handleAIContextModal(interaction, client) {
     const successEmbed = new EmbedBuilder()
       .setColor(client.colors.success)
       .setTitle("✅ AI Context Updated")
-      .setDescription(
-        "Successfully updated the AI assistant context for your server."
-      )
+      .setDescription("Successfully updated the AI assistant context for your server.")
       .addFields({
         name: "📝 Context Preview",
         value: context.substring(0, 500) + (context.length > 500 ? "..." : ""),
@@ -577,9 +567,7 @@ async function handleTruthOrDareButton(interaction, client) {
     const notAllowedEmbed = new EmbedBuilder()
       .setColor("#ff0000")
       .setTitle("❌ Not Allowed")
-      .setDescription(
-        "Only the targeted user can respond to this Truth or Dare!"
-      )
+      .setDescription("Only the targeted user can respond to this Truth or Dare!")
       .setTimestamp();
 
     return interaction.reply({
@@ -650,8 +638,7 @@ async function handleTruthOrDareButton(interaction, client) {
         }
       )
       .setThumbnail(
-        interaction.guild.members.cache.get(targetUserId)?.displayAvatarURL() ||
-          null
+        interaction.guild.members.cache.get(targetUserId)?.displayAvatarURL() || null
       )
       .setFooter({
         text: `Have fun and stay safe! • ${
@@ -668,9 +655,7 @@ async function handleTruthOrDareButton(interaction, client) {
     const errorEmbed = new EmbedBuilder()
       .setColor("#ff0000")
       .setTitle("❌ Error")
-      .setDescription(
-        "An error occurred while processing your Truth or Dare request."
-      )
+      .setDescription("An error occurred while processing your Truth or Dare request.")
       .setTimestamp();
 
     if (interaction.replied || interaction.deferred) {
@@ -698,7 +683,7 @@ async function handleAIAskAgain(interaction, client) {
 
   const modal = new ModalBuilder()
     .setCustomId("ai_ask_modal")
-    .setTitle("🤖 Ask AI Assistant");
+    .setTitle("🤖 Ask AI Assistant Anything");
 
   const questionInput = new TextInputBuilder()
     .setCustomId("ai_question_input")
@@ -726,13 +711,10 @@ async function handleAIFeedback(interaction, client) {
   const feedbackEmbed = new EmbedBuilder()
     .setColor(client.colors.primary)
     .setTitle("⭐ Rate AI Response")
-    .setDescription(
-      "How was the AI's response? Your feedback helps us improve!"
-    )
+    .setDescription("How was the AI's response? Your feedback helps us improve!")
     .addFields({
       name: "🎯 What we track",
-      value:
-        "• Response helpfulness\n• Accuracy\n• Clarity\n• Overall satisfaction",
+      value: "• Response helpfulness\n• Accuracy\n• Clarity\n• Overall satisfaction",
       inline: false,
     })
     .setFooter({ text: "Your feedback is anonymous and helps improve the AI" });
@@ -806,7 +788,7 @@ async function handleAIRating(interaction, client) {
 
 // 🤖 Handle AI ask modal submission
 async function handleAIAskModal(interaction, client) {
-  const { GoogleGenerativeAI } = require("@google/generative-ai");
+  const { GoogleGenAI } = require("@google/genai");
   const {
     EmbedBuilder,
     ActionRowBuilder,
@@ -814,6 +796,9 @@ async function handleAIAskModal(interaction, client) {
     ButtonStyle,
   } = require("discord.js");
   const Database = require("@adb/server/utils/database");
+  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+  const history = [];
 
   const question = interaction.fields.getTextInputValue("ai_question_input");
 
@@ -846,17 +831,26 @@ async function handleAIAskModal(interaction, client) {
 
   try {
     // Initialize Gemini AI
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+    const systemPrompt = `You are a helpful AI assistant named Vaish. Give concise answers of the questions, queries of the user`;
 
-    const prompt = `You are a helpful AI assistant. Answer this question concisely: ${question}`;
+    history.push({
+      role: "user",
+      parts: [{ text: question }],
+    });
 
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: history,
+      config: {
+        systemInstruction: systemPrompt,
+      },
+    });
 
-    // Truncate response if too long
+    // Truncate if too long
     const truncatedResponse =
-      response.length > 1500 ? response.substring(0, 1500) + "..." : response;
+      response.text.length > 1500
+        ? response.text.substring(0, 1500) + "..."
+        : response.text;
 
     const aiEmbed = new EmbedBuilder()
       .setColor("#0099ff")
@@ -864,8 +858,7 @@ async function handleAIAskModal(interaction, client) {
       .setDescription(truncatedResponse)
       .addFields({
         name: "❓ Your Question",
-        value:
-          question.length > 200 ? question.substring(0, 200) + "..." : question,
+        value: question.length > 200 ? question.substring(0, 200) + "..." : question,
         inline: false,
       })
       .setFooter({
@@ -986,8 +979,7 @@ async function handleReminderButtons(interaction, client) {
           },
           {
             name: "🛡️ Limits",
-            value:
-              "• Minimum: 30 seconds\n• Maximum: 1 year\n• Cooldown: 5 seconds",
+            value: "• Minimum: 30 seconds\n• Maximum: 1 year\n• Cooldown: 5 seconds",
             inline: true,
           }
         )
@@ -1144,8 +1136,7 @@ async function handleTicketButtons(interaction, client) {
 
       if (!isMod && !isCreator) {
         return await interaction.reply({
-          content:
-            "❌ Only moderators or the ticket creator can close tickets.",
+          content: "❌ Only moderators or the ticket creator can close tickets.",
           ephemeral: true,
         });
       }
@@ -1222,8 +1213,7 @@ async function handleCloseTicketModal(interaction, client) {
 
   const ticketId = interaction.customId.split("_")[3];
   const closeReason =
-    interaction.fields.getTextInputValue("close_reason") ||
-    "No reason provided";
+    interaction.fields.getTextInputValue("close_reason") || "No reason provided";
 
   try {
     // Get ticket data
@@ -1285,9 +1275,7 @@ async function handleCloseTicketModal(interaction, client) {
     }, 30000);
 
     console.log(
-      `🔒 Ticket #${ticket.ticketId || ticketId} closed by ${
-        interaction.user.tag
-      }`
+      `🔒 Ticket #${ticket.ticketId || ticketId} closed by ${interaction.user.tag}`
     );
   } catch (error) {
     console.error("Error closing ticket:", error);
